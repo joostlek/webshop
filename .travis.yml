@@ -1,0 +1,55 @@
+sudo: required
+language: java
+jdk: openjdk11
+
+services:
+  #  - docker
+  - postgresql
+
+before_script:
+  #  - export DISPLAY=:99.0
+  #  - sh -e /etc/init.d/xvfb start
+  - psql -c 'create database travis_ci_test;' -U postgres
+
+before_install:
+  - chmod +x mvnw
+#  - wget -qO- https://toolbelt.heroku.com/install.sh | sh
+#  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+#  - docker login -u _ -p $HEROKU_API_KEY registry.heroku.com
+
+env:
+  global:
+    - COMMIT=${TRAVIS_COMMIT::7}
+
+git:
+  depth: 9999999
+
+addons:
+  sonarcloud:
+    organization: "joostlek-github"
+    token: $SONAR_TOKEN
+
+script:
+  - ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.projectKey=$SONAR_KEY -Dsonar.organization=$SONAR_ORG -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_TOKEN
+
+cache:
+  #  yarn: true
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.sonar/cache'
+
+#after_success:
+#  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+#  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
+#  - export IMAGE_NAME=joostlek/webshop
+#  - docker build -t $IMAGE_NAME:$TAG .
+#  - docker push $IMAGE_NAME
+#
+#deploy:
+#  provider: script
+#  script:
+#    docker tag $IMAGE_NAME:$TAG registry.heroku.com/$HEROKU_APP_NAME/web;
+#    docker push registry.heroku.com/$HEROKU_APP_NAME/web;
+#    heroku container:release web --app $HEROKU_APP_NAME;
+#  on:
+#    branch: master
