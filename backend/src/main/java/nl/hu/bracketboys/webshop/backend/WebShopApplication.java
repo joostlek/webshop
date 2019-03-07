@@ -1,4 +1,4 @@
-package nl.hu.bracketboys.webshop;
+package nl.hu.bracketboys.webshop.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
