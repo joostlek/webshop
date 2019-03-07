@@ -38,6 +38,10 @@ public class User {
     public User() {
     }
 
+    protected void setId(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }
