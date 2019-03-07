@@ -8,7 +8,7 @@
         <version>2.1.2.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>nl.hu</groupId>
+    <groupId>nl.hu.bracketboys</groupId>
     <artifactId>webshop</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>webshop</name>

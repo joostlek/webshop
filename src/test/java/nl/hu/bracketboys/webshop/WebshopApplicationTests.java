@@ -1,4 +1,4 @@
-package nl.hu.webshop;
+package nl.hu.bracketboys.webshop;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
