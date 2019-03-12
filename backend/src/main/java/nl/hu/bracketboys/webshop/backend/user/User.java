@@ -6,6 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "users")
@@ -41,6 +42,7 @@ public class User {
     private Set<Address> addresses;
 
     public User() {
+        this.addresses = new HashSet<>();
     }
 
     protected void setId(Long id) {
@@ -109,13 +111,5 @@ public class User {
 
     public Set<Address> getAddresses() {
         return addresses;
-    }
-
-    public void setAddresses(Set<Address> addresses) {
-        this.addresses = addresses;
-    }
-
-    public void addAddress(Address address) {
-        this.addresses.add(address);
     }
 }
