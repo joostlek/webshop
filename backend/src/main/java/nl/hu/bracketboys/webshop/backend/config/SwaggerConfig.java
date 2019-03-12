@@ -14,6 +14,7 @@ public class SwaggerConfig {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
+                .host("https://webshop.joostlek.dev")
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("nl.hu.bracketboys.webshop.backend"))
                 .paths(PathSelectors.any())
