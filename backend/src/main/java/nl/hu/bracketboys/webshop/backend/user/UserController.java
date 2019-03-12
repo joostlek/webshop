@@ -3,6 +3,7 @@ package nl.hu.bracketboys.webshop.backend.user;
 import nl.hu.bracketboys.webshop.backend.user.dto.UserDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +30,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
+    @ResponseStatus(HttpStatus.CREATED)
     public UserDTO addUser(@RequestBody UserDTO userDTO) {
         User user = convertToEntity(userDTO);
         return convertToDTO(userService.save(user));
