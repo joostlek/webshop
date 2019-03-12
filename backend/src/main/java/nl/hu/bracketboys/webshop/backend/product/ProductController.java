@@ -20,7 +20,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/users")
+    @GetMapping("/products")
     public List<ProductDTO> getAllProducts() {
         return this.productService.getAllProducts()
                 .stream()
@@ -28,15 +28,15 @@ public class ProductController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping("/users")
-    public ProductDTO addUser(@RequestBody ProductDTO productDTO) {
+    @PostMapping("/products")
+    public ProductDTO addProduct(@RequestBody ProductDTO productDTO) {
         Product product = convertToEntity(productDTO);
         return convertToDTO(productService.save(product));
     }
 
-    @GetMapping("/users/{userId}")
-    public ProductDTO getSingleUsers(@PathVariable Long userId) {
-        return convertToDTO(productService.getProductById(userId));
+    @GetMapping("/products/{productId}")
+    public ProductDTO getSingleProduct(@PathVariable Long productId) {
+        return convertToDTO(productService.getProductById(productId));
     }
 
     private ProductDTO convertToDTO(Product product) {

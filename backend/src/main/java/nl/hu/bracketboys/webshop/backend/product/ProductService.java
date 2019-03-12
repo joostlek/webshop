@@ -32,7 +32,7 @@ public class ProductService implements ProductServiceInterface {
     }
 
     @Override
-    public Product save(Product user) {
-        return productRepository.save(user);
+    public Product save(Product product) {
+        return productRepository.save(product);
     }
 }

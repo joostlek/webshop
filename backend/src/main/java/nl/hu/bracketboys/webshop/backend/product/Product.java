@@ -36,6 +36,10 @@ public class Product {
         return id;
     }
 
+    protected void setId(Long id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
     }
