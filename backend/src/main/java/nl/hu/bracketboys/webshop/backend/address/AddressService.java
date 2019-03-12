@@ -46,4 +46,9 @@ public class AddressService implements AddressServiceInterface {
                         () -> new AddressNotFoundException(newAddress.getId())
                 );
     }
+
+    @Override
+    public void delete(Long addressId) {
+        addressRepository.deleteById(addressId);
+    }
 }
