@@ -104,6 +104,26 @@ class AddressServiceTest {
                 .isEqualTo(address);
     }
 
+    @Test
+    @DisplayName("Update address")
+    void shouldReturnUpdatedAddress_whenUpdateAddress() {
+        when(addressRepository.findById(2L)).thenReturn(Optional.of(address));
+        when(addressRepository.save(any(Address.class))).thenReturn(address2);
+
+        assertThat(addressService.update(address2))
+                .isEqualTo(address2);
+    }
+
+    @Test
+    @DisplayName("Update invalid address")
+    void shouldThrowAddressNotFoundException_whenUpdateInvalidAddress() {
+        when(addressRepository.findById(2L)).thenReturn(Optional.empty());
+
+        assertThrows(AddressNotFoundException.class,
+                () -> addressService.update(address2)
+        );
+    }
+
     @TestConfiguration
     static class AddressServiceTestContextConfiguration {
         @Autowired
