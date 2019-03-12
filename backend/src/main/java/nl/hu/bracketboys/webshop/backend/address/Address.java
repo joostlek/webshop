@@ -1,5 +1,7 @@
 package nl.hu.bracketboys.webshop.backend.address;
 
+import nl.hu.bracketboys.webshop.backend.user.User;
+
 import javax.persistence.*;
 
 @Entity
@@ -24,6 +26,9 @@ public class Address {
 
     @Column(nullable = false)
     private String country;
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    private User user;
 
     public Address() {
     }
@@ -74,5 +79,13 @@ public class Address {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
