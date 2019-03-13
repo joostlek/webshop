@@ -38,4 +38,9 @@ public class CategoryService implements CategoryServiceInterface {
                 .orElseThrow(() -> new CategoryNotFoundException(newCategory.getId()));
     }
 
+    @Override
+    public void deleteCategory(Long categoryId) {
+        categoryRepository.deleteById(categoryId);
+    }
+
 }

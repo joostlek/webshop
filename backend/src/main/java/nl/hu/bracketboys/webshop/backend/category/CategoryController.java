@@ -48,6 +48,11 @@ public class CategoryController {
         return convertToDTO(categoryService.updateCategory(category));
     }
 
+    @DeleteMapping("/categories/{categoryId}")
+    public void deleteCategory(@PathVariable Long categoryId) {
+        categoryService.deleteCategory(categoryId);
+    }
+
     private CategoryDTO convertToDTO(Category category) {
         return modelMapper.map(category, CategoryDTO.class);
     }

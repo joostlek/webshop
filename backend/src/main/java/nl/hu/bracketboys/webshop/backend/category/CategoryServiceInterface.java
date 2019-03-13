@@ -10,4 +10,6 @@ public interface CategoryServiceInterface {
     Category saveCategory(Category category);
 
     Category updateCategory(Category category);
+
+    void deleteCategory(Long categoryId);
 }
