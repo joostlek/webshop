@@ -2,9 +2,11 @@ package nl.hu.bracketboys.webshop.backend.category;
 
 import nl.hu.bracketboys.webshop.backend.category.exceptions.CategoryNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CategoryService implements CategoryServiceInterface {
 
     @Autowired
