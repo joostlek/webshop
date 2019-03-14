@@ -35,7 +35,7 @@ public class CategoryService implements CategoryServiceInterface {
     @Override
     public Category updateCategory(Category newCategory) {
         return categoryRepository.findById(newCategory.getId())
-                .map((category) -> {
+                .map(category -> {
                     category.setName(newCategory.getName());
                     return categoryRepository.save(category);
                 })
