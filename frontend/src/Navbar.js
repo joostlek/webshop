@@ -1,46 +1,80 @@
 import React, { Component } from "react";
+import logo from "./assets/logo.png";
 
 export class Navbar extends Component {
   render() {
     return (
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-          Navbar
+      <nav
+        className="navbar navbar-expand-lg navbar-light"
+        style={{ backgroundColor: "#FFFFFF" }}
+      >
+        <a className="navbar-brand" href="#">
+          <img src={logo} />
         </a>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon" />
+          <span className="navbar-toggler-icon" />
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">
-                Home <span class="sr-only">(current)</span>
+
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item active">
+              <a className="nav-link" href="#">
+                Dashboard <span className="sr-only">(current)</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                Features
+            <li className="nav-item">
+              <a className="nav-link" href="#">
+                Account
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                Pricing
+            {/* <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Dropdown
               </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">
-                Disabled
-              </a>
-            </li>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">
+                  Action
+                </a>
+                <a class="dropdown-item" href="#">
+                  Another action
+                </a>
+                <div class="dropdown-divider" />
+                <a class="dropdown-item" href="#">
+                  Something else here
+                </a>
+              </div>
+            </li> */}
           </ul>
+          <form className="form-inline my-2 my-lg-0">
+            <input
+              className="form-control mr-sm-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button
+              className="btn btn-outline-success my-2 my-sm-0"
+              type="submit"
+            >
+              Search
+            </button>
+          </form>
         </div>
       </nav>
     );
