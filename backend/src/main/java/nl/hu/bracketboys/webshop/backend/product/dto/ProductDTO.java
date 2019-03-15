@@ -42,6 +42,14 @@ public class ProductDTO {
         this.description = description;
     }
 
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
     public boolean getDiscount() {
         return discount;
     }
