@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 
-// import Product from "./Product";
-import ProductList from "./components/ProductList";
+import { BrowserRouter, Route } from "react-router-dom";
+
+import Product from "./Product";
+// import ProductList from "./components/ProductList";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 
@@ -22,7 +24,7 @@ class App extends Component {
             <Sidebar />
           </div>
           <div className="col-10">
-            <ProductList />
+            <Product />
           </div>
         </div>
       </div>
