@@ -23,6 +23,9 @@ public class Product {
     @Column(nullable = false)
     private Double price;
 
+    @Column(nullable = false)
+    private boolean discount;
+
     @CreationTimestamp
     private Date created;
 
@@ -62,6 +65,14 @@ public class Product {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public boolean getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(boolean discount) {
+        this.discount = discount;
     }
 
     public Date getCreated() {
