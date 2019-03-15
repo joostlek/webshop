@@ -1,6 +1,6 @@
 package nl.hu.bracketboys.webshop.backend.product;
 
-import nl.hu.bracketboys.webshop.backend.user.exceptions.UserNotFoundException;
+import nl.hu.bracketboys.webshop.backend.product.exceptions.ProductNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -68,7 +68,7 @@ class ProductServiceTest {
 
     @Test
     void throwException_whenGetUnknownUserById() {
-        assertThrows(UserNotFoundException.class,
+        assertThrows(ProductNotFoundException.class,
                 () -> productService.getProductById(3L)
         );
     }
