@@ -1,46 +1,29 @@
-package nl.hu.bracketboys.webshop.backend.product;
+package nl.hu.bracketboys.webshop.backend.product.dto;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "products")
-public class Product {
+public class ProductDTO {
 
-    @Id
-    @SequenceGenerator(name = "product_generator", sequenceName = "product_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_generator")
     private Long id;
 
-    @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
     private String description;
 
-    @Column(nullable = false)
     private Double price;
 
-    @Column(nullable = false)
     private boolean discount;
 
-    @CreationTimestamp
     private Date created;
 
-    @UpdateTimestamp
     private Date updated;
-
-    public Product() {
-    }
-
-    protected void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -79,7 +62,15 @@ public class Product {
         return created;
     }
 
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
     public Date getUpdated() {
         return updated;
+    }
+
+    public void setUpdated(Date updated) {
+        this.updated = updated;
     }
 }
