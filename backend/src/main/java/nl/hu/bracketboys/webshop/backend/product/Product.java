@@ -1,10 +1,13 @@
 package nl.hu.bracketboys.webshop.backend.product;
 
+import nl.hu.bracketboys.webshop.backend.category.Category;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = "products")
 public class Product {
@@ -31,6 +34,9 @@ public class Product {
 
     @UpdateTimestamp
     private Date updated;
+
+    @ManyToMany(mappedBy = "products")
+    private Set<Category> categories = new HashSet<>();
 
     public Product() {
     }
@@ -81,5 +87,17 @@ public class Product {
 
     public Date getUpdated() {
         return updated;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
+
+    public void addCategory(Category category) {
+        this.categories.add(category);
     }
 }

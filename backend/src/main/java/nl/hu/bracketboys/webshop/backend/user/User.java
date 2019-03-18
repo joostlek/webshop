@@ -39,10 +39,9 @@ public class User {
     private boolean active;
 
     @OneToMany(mappedBy = "user")
-    private Set<Address> addresses;
+    private Set<Address> addresses = new HashSet<>();
 
     public User() {
-        this.addresses = new HashSet<>();
     }
 
     protected void setId(Long id) {
@@ -111,5 +110,9 @@ public class User {
 
     public Set<Address> getAddresses() {
         return addresses;
+    }
+
+    public void addAddress(Address address) {
+        this.addresses.add(address);
     }
 }
