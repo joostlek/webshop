@@ -23,7 +23,7 @@ class Product extends Component {
   render() {
     return (
       <div>
-        <h1>Producten</h1>
+        <h1>Aanbiedingen van deze week</h1>
         <div className="row">
           {this.prod.map(prod => (
             <div className="col-4">
