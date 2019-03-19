@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import "bootstrap/dist/css/bootstrap.css";
 
 class CartLine extends Component {
@@ -15,23 +16,22 @@ class CartLine extends Component {
     }
 
     updateSessionStorage(object) {
-        let updatedCart = JSON.stringify(object);
-        sessionStorage["cart"] = updatedCart;
+        sessionStorage["cart"] = JSON.stringify(object);
     }
 
     deleteItem(productId) {
         let cart = this.getCart();
         for(let i=0; i<cart.length; i++) {
             if (cart[i].id === productId) {
-                cart.splice(i, 1);
+                cart = cart.splice(i, 1);
             }
         }
         this.updateSessionStorage(cart);
+        this.props.deleteHandler();
     }
 
     updateCart() {
         let cart = this.getCart();
-        var j;
         for(let i=0; i<cart.length;i++) {
             if (cart[i].id === this.props.id) {
                 if (this.state.amount <= 0) { // If amount reaches 0 delete product else update amount
@@ -60,14 +60,17 @@ class CartLine extends Component {
 
     render() {
         return (
-            <div>
-                <div>{this.props.name}</div>
-                <div>
-                    <button onClick={() => this.decreaseAmount()}>-</button>
+            <div className="row" style={{ margin: "1em 0em 1em 0em" }}>
+                <div className="col-md-5">{this.props.name}</div>
+                <div className="col-md-3">
+                    <button className="btn btn-warning" onClick={() => this.decreaseAmount()} style={{ margin:"0em .5em 0em .5em" }}>-</button>
                     {this.state.amount}
-                    <button onClick={() => this.increaseAmount()}>+</button>
+                    <button className="btn btn-success" onClick={() => this.increaseAmount()} style={{ margin:"0em .5em 0em .5em" }}>+</button>
                 </div>
-                <div>€{(this.state.amount * this.props.price_per_unit).toFixed(2)},-</div>
+                <div className="col-md-2">€{(this.state.amount * this.props.price_per_unit).toFixed(2)},-</div>
+                <div className="col-md-1">
+                    <button className="btn btn-danger" onClick={() => this.deleteItem(this.props.id)}>X</button>
+                </div>
             </div>
         );
     }

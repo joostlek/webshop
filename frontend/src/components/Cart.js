@@ -4,8 +4,20 @@ import CartLine from './CartLine';
 
 class Cart extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.loadTestData();
+
+        this.deleteHandler = this.deleteHandler.bind(this);
+    }
+
     getCart() {
-        return JSON.parse(window.sessionStorage.getItem("cart"));
+        return JSON.parse(sessionStorage["cart"]);
+    }
+
+    deleteHandler() {
+        this.render();
     }
 
     loadTestData() {
@@ -23,23 +35,22 @@ class Cart extends Component {
                 "price_per_unit": 1.20
             }
         ];
-        if (! sessionStorage["cart"]) {
+        //if (! sessionStorage["cart"]) {
             sessionStorage[ "cart"] = JSON.stringify(testdata);
-        }
+        //}
     }
 
     render() {
-        this.loadTestData();
-
         return (
             <div>
 
                 <div>
                     {this.getCart().map( item => (
-                        <CartLine id={item.id} name={item.name} amount={item.amount} price_per_unit={item.price_per_unit} />
+                        <CartLine id={item.id} name={item.name} amount={item.amount}
+                                  price_per_unit={item.price_per_unit} deleteHandler={this.deleteHandler} />
                     ))}
                 </div>
-                <button>koop</button>
+                <button className="btn btn-primary">koop</button>
             </div>
         );
     }
