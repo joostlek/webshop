@@ -7,6 +7,7 @@ import Product from "./Product";
 import ProductList from "./components/ProductList";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
+import Cart from './components/Cart';
 
 class App extends Component {
   render() {
@@ -27,6 +28,7 @@ class App extends Component {
               <Switch>
                 <Route path="/" component={Product} exact />
                 <Route path="/product" component={ProductList} />
+                <Route path="/cart" component={Cart} />
               </Switch>
             </div>
           </div>
