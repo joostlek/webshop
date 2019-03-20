@@ -23,7 +23,8 @@ class CartLine extends Component {
         let cart = this.getCart();
         for(let i=0; i<cart.length; i++) {
             if (cart[i].id === productId) {
-                cart = cart.splice(i, 1);
+                cart.splice(i, 1);
+                break;
             }
         }
         this.updateSessionStorage(cart);
@@ -34,11 +35,9 @@ class CartLine extends Component {
         let cart = this.getCart();
         for(let i=0; i<cart.length;i++) {
             if (cart[i].id === this.props.id) {
-                if (this.state.amount <= 0) { // If amount reaches 0 delete product else update amount
-                    this.deleteItem(i);
-                } else {
-                    cart[i].amount = this.state.amount;
-                }
+
+                cart[i].amount = this.state.amount;
+
                 break;
             }
         }
@@ -48,12 +47,16 @@ class CartLine extends Component {
 
 
     async increaseAmount() {
-        await this.setState({amount: this.state.amount + 1});
+        await this.setState({amount: this.state.amount + 1} );
         this.updateCart();
     }
 
     async decreaseAmount() {
-        await this.setState({amount: this.state.amount - 1});
+        if (this.state.amount <= 1) {
+            await this.setState( {amount: 1} )
+        } else {
+            await this.setState({amount: this.state.amount - 1});
+        }
         this.updateCart();
     }
 

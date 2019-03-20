@@ -17,7 +17,7 @@ class Cart extends Component {
     }
 
     deleteHandler() {
-        this.render();
+        this.forceUpdate();
     }
 
     loadTestData() {
@@ -43,7 +43,6 @@ class Cart extends Component {
     render() {
         return (
             <div>
-
                 <div>
                     {this.getCart().map( item => (
                         <CartLine id={item.id} name={item.name} amount={item.amount}
