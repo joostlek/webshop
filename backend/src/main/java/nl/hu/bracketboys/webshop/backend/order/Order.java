@@ -63,6 +63,10 @@ public class Order {
         this.items = items;
     }
 
+    public void addItem(OrderItem item) {
+        this.items.add(item);
+    }
+
     public User getUser() {
         return user;
     }

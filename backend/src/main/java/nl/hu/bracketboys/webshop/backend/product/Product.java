@@ -30,7 +30,7 @@ public class Product {
     @UpdateTimestamp
     private Date updated;
 
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @OneToOne(fetch = FetchType.EAGER, optional = true)
     private Discount discount;
 
     public Product() {
@@ -62,6 +62,15 @@ public class Product {
 
     public Double getPrice() {
         return price;
+    }
+
+    public Double getCurrentPrice() {
+        if (this.discount != null) {
+            if (new Date().after(this.discount.getBeginDate()) && new Date().before(this.discount.getEndDate())) {
+                return this.price - this.discount.getDiscount();
+            }
+        }
+        return this.price;
     }
 
     public void setPrice(Double price) {
