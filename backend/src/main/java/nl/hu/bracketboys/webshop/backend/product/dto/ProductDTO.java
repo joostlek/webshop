@@ -12,8 +12,6 @@ public class ProductDTO {
 
     private Double price;
 
-    private boolean discount;
-
     private Date created;
 
     private Date updated;
@@ -48,14 +46,6 @@ public class ProductDTO {
 
     public void setPrice(Double price) {
         this.price = price;
-    }
-
-    public boolean getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(boolean discount) {
-        this.discount = discount;
     }
 
     public Date getCreated() {
