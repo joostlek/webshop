@@ -3,27 +3,29 @@ import "./App.css";
 import "./product.css"
 import "bootstrap/dist/css/bootstrap.css";
 import productimage from "./assets/product.jpg";
+// import "./components/variables.js";
 
 class Product extends Component {
+
+    getProducts() {
+        fetch("127.0.0.1")
+            .then(result=>result.json())
+            .then(items=>this.setState({items}))
+    }
 
     //Testdata
     prod = [
         {
-            ProductId: "5",
-            Name: "Corsair GS600 600 Watt PSU",
-            Description: "The Corsair Gaming Series GS600 is the ideal price/performance choice for mid-spec gaming PC",
-            Category: "Groente",
-            Price: 1234.00
+            productId: "5",
+            name: "Corsair GS600 600 Watt PSU",
+            description: "The Corsair Gaming Series GS600 is the ideal price/performance choice for mid-spec gaming PC",
+            category: "Groente",
+            price: 1234.00
         },
     ];
 
     saveProductToSession(prod) {
-        for (let i=-0; i < prod.length;i++) {
 
-        }
-
-
-        let session = window.sessionStorage;
     }
 
     render() {
@@ -42,9 +44,6 @@ class Product extends Component {
                                         <div className="product-title">{prod.Name}</div>
                                         <div className="product-desc">{prod.Description}</div>
                                         <div className="col-md-3"></div>
-                                        <div className="product-rating"><i className="fa fa-star gold"></i> <i
-                                            className="fa fa-star gold"></i> <i className="fa fa-star gold"></i> <i
-                                            className="fa fa-star gold"></i> <i className="fa fa-star-o"></i></div>
                                         <div className="product-price">$ {prod.Price}</div>
 
                                         {/* Foutmelding genereren op basis van voorraad */}

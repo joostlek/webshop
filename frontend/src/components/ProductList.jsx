@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import test from "./test.svg";
+import test from "../assets/test.svg";
 
 export class ProductList extends Component {
   products = [
