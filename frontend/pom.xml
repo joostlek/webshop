@@ -8,6 +8,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>nl.hu.bracketboys.webshop</groupId>
     <artifactId>frontend</artifactId>
 
     <build>

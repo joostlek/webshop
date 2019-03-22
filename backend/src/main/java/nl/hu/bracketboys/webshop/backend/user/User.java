@@ -1,10 +1,13 @@
 package nl.hu.bracketboys.webshop.backend.user;
 
+import nl.hu.bracketboys.webshop.backend.address.Address;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = "users")
 public class User {
@@ -35,7 +38,11 @@ public class User {
     @Column(nullable = false)
     private boolean active;
 
+    @OneToMany(mappedBy = "user")
+    private Set<Address> addresses;
+
     public User() {
+        this.addresses = new HashSet<>();
     }
 
     protected void setId(Long id) {
@@ -100,5 +107,9 @@ public class User {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public Set<Address> getAddresses() {
+        return addresses;
     }
 }
