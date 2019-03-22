@@ -19,9 +19,6 @@ public class Discount {
     private double discount;
 
     @Column(nullable = false)
-    private int productId;
-
-    @Column(nullable = false)
     private Date beginDate;
 
     @Column(nullable = false)
@@ -53,14 +50,6 @@ public class Discount {
 
     public void setDiscount(double discount) {
         this.discount = discount;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
     }
 
     public Date getBeginDate() {

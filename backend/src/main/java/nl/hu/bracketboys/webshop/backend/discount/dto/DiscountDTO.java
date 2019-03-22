@@ -9,8 +9,6 @@ public class DiscountDTO {
 
     private double discount;
 
-    private int productId;
-
     private Date created;
 
     private Date updated;
@@ -24,10 +22,6 @@ public class DiscountDTO {
     public double getDiscount() { return discount; }
 
     public void setDiscount(double discount) { this.discount = discount; }
-
-    public int getProductId() { return productId; }
-
-    public void setProductId(int productId) { this.productId = productId; }
 
     public Date getCreated() {
         return created;
