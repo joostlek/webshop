@@ -19,7 +19,7 @@ public class WebConfiguration implements WebMvcConfigurer {
         registry.addResourceHandler("/webjars/**")
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
         registry
-                .addResourceHandler("/**/*.css", "/**/*.html", "/**/*.js", "/**/*.jsx", "/**/*.png", "/**/*.ttf", "/**/*.woff", "/**/*.woff2")
+                .addResourceHandler("/**/*.css", "/**/*.html", "/**/*.js", "/**/*.js.map", "/**/*.jsx", "/**/*.jpg", "/**/*.png", "/**/*.ttf", "/**/*.woff", "/**/*.woff2")
                 .setCachePeriod(0)
                 .addResourceLocations("classpath:/static/");
 
