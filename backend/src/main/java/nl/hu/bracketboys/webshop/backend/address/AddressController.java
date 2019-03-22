@@ -5,6 +5,7 @@ import nl.hu.bracketboys.webshop.backend.user.User;
 import nl.hu.bracketboys.webshop.backend.user.UserServiceInterface;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.BasePathAwareController;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@BasePathAwareController
 public class AddressController {
     private final AddressServiceInterface addressService;
 
