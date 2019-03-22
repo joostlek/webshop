@@ -1,8 +1,11 @@
 package nl.hu.bracketboys.webshop.backend.address;
 
+import nl.hu.bracketboys.webshop.backend.order.Order;
 import nl.hu.bracketboys.webshop.backend.user.User;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Address {
@@ -29,6 +32,9 @@ public class Address {
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private User user;
+
+    @OneToMany(mappedBy = "address")
+    private Set<Order> orders = new HashSet<>();
 
     public Address() {
     }
@@ -87,5 +93,13 @@ public class Address {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 }
