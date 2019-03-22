@@ -1,5 +1,6 @@
 package nl.hu.bracketboys.webshop.backend.product;
 
+import nl.hu.bracketboys.webshop.backend.discount.Discount;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -23,14 +24,14 @@ public class Product {
     @Column(nullable = false)
     private Double price;
 
-    @Column(nullable = false)
-    private boolean discount;
-
     @CreationTimestamp
     private Date created;
 
     @UpdateTimestamp
     private Date updated;
+
+    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    private Discount discount;
 
     public Product() {
     }
@@ -67,19 +68,19 @@ public class Product {
         this.price = price;
     }
 
-    public boolean getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(boolean discount) {
-        this.discount = discount;
-    }
-
     public Date getCreated() {
         return created;
     }
 
     public Date getUpdated() {
         return updated;
+    }
+
+    public Discount getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Discount discount) {
+        this.discount = discount;
     }
 }
