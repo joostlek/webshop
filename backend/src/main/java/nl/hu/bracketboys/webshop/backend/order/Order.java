@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "orders")
 public class Order {
 
     @Id
@@ -64,6 +65,7 @@ public class Order {
     }
 
     public void addItem(OrderItem item) {
+        item.setOrder(this);
         this.items.add(item);
     }
 

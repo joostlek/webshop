@@ -22,12 +22,15 @@ public class OrderService implements OrderServiceInterface {
 
     private final ProductServiceInterface productService;
 
+    private final OrderItemRepository orderItemRepository;
+
     @Autowired
-    public OrderService(OrderRepository orderRepository, UserServiceInterface userService, AddressServiceInterface addressService, ProductServiceInterface productService) {
+    public OrderService(OrderRepository orderRepository, UserServiceInterface userService, AddressServiceInterface addressService, ProductServiceInterface productService, OrderItemRepository orderItemRepository) {
         this.orderRepository = orderRepository;
         this.userService = userService;
         this.addressService = addressService;
         this.productService = productService;
+        this.orderItemRepository = orderItemRepository;
     }
 
     @Override
@@ -42,12 +45,14 @@ public class OrderService implements OrderServiceInterface {
         OrderBuilder orderBuilder = new OrderBuilder()
                 .setAddress(addressService.getAddressById(order.getAddressId()))
                 .setUser(userService.getUserById(order.getUserId()));
+        Order newOrder = orderRepository.save(orderBuilder.build());
         for (NewOrderItemDTO itemDTO : order.getOrderItems()) {
             OrderItem orderItem = new OrderItem();
             orderItem.setAmount(itemDTO.getAmount());
             orderItem.setProduct(productService.getProductById(itemDTO.getProductId()));
-            orderBuilder.addItem(orderItem);
+            newOrder.addItem(orderItem);
+            orderItemRepository.save(orderItem);
         }
-        return orderRepository.save(orderBuilder.build());
+        return orderRepository.save(newOrder);
     }
 }
