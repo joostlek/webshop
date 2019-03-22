@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
+import PrivateRoute from "react-private-route";
 
 import Product from "./Product";
 import ProductList from "./components/ProductList";
@@ -10,6 +11,23 @@ import Sidebar from "./Sidebar";
 import Cart from './components/Cart';
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoggedIn: false
+        };
+        this.isLoggedIn = this.isLoggedIn.bind(this);
+        this.toggleLogin = this.toggleLogin.bind(this);
+    }
+
+    isLoggedIn() {
+        return this.state.isLoggedIn;
+    }
+
+    toggleLogin() {
+        this.setState({isLoggedIn: !this.state.isLoggedIn});
+    }
+
     render() {
         return (
             <BrowserRouter>
@@ -28,7 +46,10 @@ class App extends Component {
                             <Switch>
                                 <Route path="/" component={Product} exact/>
                                 <Route path="/product" component={ProductList}/>
-                                <Route path="/cart" component={Cart}/>
+                                <PrivateRoute path="/cart" component={Cart} isAuthenticated={!!isLoggedIn()}/>
+                                <Route path="/login"
+                                       component={() => (<Login toggleLogin={this.toggleLogin} isLogged={this.state.isLoggedIn} />)}
+                                />
                             </Switch>
                         </div>
                     </div>
