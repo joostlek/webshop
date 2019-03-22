@@ -1,5 +1,7 @@
 package nl.hu.bracketboys.webshop.backend.discount.dto;
 
+import nl.hu.bracketboys.webshop.backend.product.Product;
+
 import java.util.Date;
 
 public class DiscountDTO {
@@ -12,6 +14,8 @@ public class DiscountDTO {
     private Date created;
 
     private Date updated;
+
+    private Product product;
 
     public Long getId() { return id; }
 
@@ -31,5 +35,13 @@ public class DiscountDTO {
 
     public Date getUpdated() {
         return updated;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }
