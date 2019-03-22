@@ -26,13 +26,13 @@ class Cart extends Component {
                 "id": 1,
                 "name": "Komkommer",
                 "amount": 3,
-                "price_per_unit": 1.00
+                "price": 1.00
             },
             {
                 "id": 2,
                 "name": "Chips",
                 "amount": 2,
-                "price_per_unit": 1.20
+                "price": 1.20
             }
         ];
         //if (! sessionStorage["cart"]) {
@@ -46,7 +46,7 @@ class Cart extends Component {
                 <div>
                     {this.getCart().map( item => (
                         <CartLine id={item.id} name={item.name} amount={item.amount}
-                                  price_per_unit={item.price_per_unit} deleteHandler={this.deleteHandler} />
+                                  price={item.price} deleteHandler={this.deleteHandler} />
                     ))}
                 </div>
                 <button className="btn btn-primary">koop</button>

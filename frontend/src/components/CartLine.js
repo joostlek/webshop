@@ -70,7 +70,7 @@ class CartLine extends Component {
                     {this.state.amount}
                     <button className="btn btn-success" onClick={() => this.increaseAmount()} style={{ margin:"0em .5em 0em .5em" }}>+</button>
                 </div>
-                <div className="col-md-2">€{(this.state.amount * this.props.price_per_unit).toFixed(2)},-</div>
+                <div className="col-md-2">€{(this.state.amount * this.props.price).toFixed(2)},-</div>
                 <div className="col-md-1">
                     <button className="btn btn-danger" onClick={() => this.deleteItem(this.props.id)}>X</button>
                 </div>
