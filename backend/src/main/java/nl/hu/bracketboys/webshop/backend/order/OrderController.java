@@ -5,9 +5,10 @@ import nl.hu.bracketboys.webshop.backend.order.dto.OrderDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.BasePathAwareController;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @BasePathAwareController
@@ -25,10 +26,18 @@ public class OrderController {
 
     @PostMapping("/orders")
     public OrderDTO storeOrder(@RequestBody NewOrderDTO orderDTO) {
-        return convertToEntity(orderService.saveOrder(orderDTO));
+        return convertToDTO(orderService.saveOrder(orderDTO));
     }
 
-    private OrderDTO convertToEntity(Order order) {
+    @GetMapping("/users/{userId}/orders")
+    public List<OrderDTO> getOrdersFromUser(@PathVariable Long userId) {
+        return orderService.getOrdersByUserId(userId)
+                .stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+    private OrderDTO convertToDTO(Order order) {
         return modelMapper.map(order, OrderDTO.class);
     }
 

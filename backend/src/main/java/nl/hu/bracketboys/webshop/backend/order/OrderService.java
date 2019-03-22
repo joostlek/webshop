@@ -3,13 +3,13 @@ package nl.hu.bracketboys.webshop.backend.order;
 import nl.hu.bracketboys.webshop.backend.address.AddressServiceInterface;
 import nl.hu.bracketboys.webshop.backend.order.dto.NewOrderDTO;
 import nl.hu.bracketboys.webshop.backend.order.dto.NewOrderItemDTO;
-import nl.hu.bracketboys.webshop.backend.order.exceptions.OrderNotFoundException;
 import nl.hu.bracketboys.webshop.backend.product.ProductServiceInterface;
 import nl.hu.bracketboys.webshop.backend.user.UserServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class OrderService implements OrderServiceInterface {
@@ -34,9 +34,8 @@ public class OrderService implements OrderServiceInterface {
     }
 
     @Override
-    public Order getOrderByUserId(Long userId) {
-        return orderRepository.findById(userId)
-                .orElseThrow(OrderNotFoundException::new);
+    public List<Order> getOrdersByUserId(Long userId) {
+        return orderRepository.findAllByUserId(userId);
     }
 
     @Override

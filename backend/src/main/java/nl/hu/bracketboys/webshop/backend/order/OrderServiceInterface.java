@@ -2,8 +2,10 @@ package nl.hu.bracketboys.webshop.backend.order;
 
 import nl.hu.bracketboys.webshop.backend.order.dto.NewOrderDTO;
 
+import java.util.List;
+
 public interface OrderServiceInterface {
-    Order getOrderByUserId(Long userId);
+    List<Order> getOrdersByUserId(Long userId);
 
     Order saveOrder(NewOrderDTO order);
 }
