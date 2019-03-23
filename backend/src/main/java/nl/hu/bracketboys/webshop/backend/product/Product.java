@@ -30,7 +30,7 @@ public class Product {
     @UpdateTimestamp
     private Date updated;
 
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @OneToOne(fetch = FetchType.EAGER)
     private Discount discount;
 
     public Product() {

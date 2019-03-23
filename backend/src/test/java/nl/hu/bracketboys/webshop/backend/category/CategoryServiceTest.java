@@ -40,7 +40,7 @@ class CategoryServiceTest {
         category.setId(1L);
         category.setName("Laptops");
         category1.setId(2L);
-        category.setName("Computers");
+        category1.setName("Computers");
     }
 
     @Test
