@@ -28,7 +28,10 @@ export class Navbar extends Component {
           </ul>
         </div>
         <div className="navbar-right">
-          <Cart />
+          <NavLink className="nav-link" to="/cart">
+            <i>Cart</i>
+            <span className="badge badge-secondary">2</span>
+          </NavLink>
         </div>
       </nav>
     );
