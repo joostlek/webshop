@@ -26,6 +26,7 @@ class Logout extends Component {
 
     logout() {
         sessionStorage.removeItem("myJWT");
+        this.setRedirect();
     }
 
     render() {
