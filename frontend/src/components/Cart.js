@@ -1,8 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import CartLine from './CartLine';
+import "./Cart.css";
+import CartLine from "./CartLine";
 
 class Cart extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      active: true
+    };
+  }
 
     constructor(props) {
         super(props);
@@ -39,6 +46,7 @@ class Cart extends Component {
             sessionStorage[ "cart"] = JSON.stringify(testdata);
         //}
     }
+  }
 
     render() {
         return (
@@ -54,6 +62,22 @@ class Cart extends Component {
         );
     }
 
+        <div className={this.state.active ? "collapse" : null}>
+          <div>
+            {this.getCart().map(item => (
+              <CartLine
+                key={item.id}
+                id={item.id}
+                name={item.name}
+                amount={item.amount}
+                price_per_unit={item.price_per_unit}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Cart;
