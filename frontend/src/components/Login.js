@@ -1,34 +1,77 @@
 import React, { Component } from 'react';
 import "bootstrap/dist/css/bootstrap.css";
+import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
 
-    login() {
+    constructor(props) {
+        super(props);
 
-        this.toggleLogin();
+        this.state = {
+            username: '',
+            password: '',
+            redirect: false
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+
     }
 
-    logout() {
+    handleChange(event) {
+        this.setState({
+            [event.target.id]: event.target.value
+        });
+    }
 
+    setRedirect() {
+        this.setState({
+            redirect: true
+        });
+    }
+
+    renderRedirect() {
+        if (this.state.redirect) {
+            return <Redirect to='/' />
+        }
+    }
+
+    login() {
+        let fetchoptions = {
+            method: "POST",
+            body: {
+                'username': this.state.username,
+                'password': this.state.password
+            }
+        };
+
+        fetch("localhost/api/v1/login", fetchoptions)
+            .then(function(response) {
+                if (response.ok) return response.json();
+                else throw "Wrong username/password";
+            })
+            .then(function(response) {
+                sessionStorage["myJWT"] = response.JWT;
+                this.setRedirect();
+
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
     }
 
     render() {
-        let component;
-        if (this.props.isLoggedIn) {
-            component = (
-                <input
-                <button onClick={this.login()}>Login</button>
-            );
-        } else {
-            component = (
-                <button onClick={this.logout()}>Logout</button>
-            );
-        }
-
-
         return(
             <div>
-                {component};
+                {this.renderRedirect()}
+                <label className="row">
+                    <span className="col-md-2">Username:</span>
+                    <input className="col-md-3" type="text" value={this.state.username} onChange={this.handleChange}/>
+                </label>
+                <label className="row">
+                    <span className="col-md-2">Password:</span>
+                    <input className="col-md-3" type="password" value={this.state.password} onChange={this.handleChange}/>
+                </label>
+                <button className="btn btn-primary" onClick={this.login()}>Login</button>
             </div>
         );
     }
