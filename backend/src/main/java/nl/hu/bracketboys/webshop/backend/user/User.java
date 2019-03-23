@@ -1,6 +1,7 @@
 package nl.hu.bracketboys.webshop.backend.user;
 
 import nl.hu.bracketboys.webshop.backend.address.Address;
+import nl.hu.bracketboys.webshop.backend.order.Order;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -40,6 +41,9 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private Set<Address> addresses = new HashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    private Set<Order> orders;
 
     public User() {
     }

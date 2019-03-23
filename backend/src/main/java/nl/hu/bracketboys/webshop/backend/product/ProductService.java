@@ -21,6 +21,11 @@ public class ProductService implements ProductServiceInterface {
     }
 
     @Override
+    public Product removeProductFromStorage(Long productId, int amount) {
+        return this.getProductById(productId);
+    }
+
+    @Override
     public Product getProductById(Long id) {
         return productRepository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException(id));

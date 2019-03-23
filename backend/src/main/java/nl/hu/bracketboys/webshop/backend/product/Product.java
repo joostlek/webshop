@@ -1,6 +1,9 @@
 package nl.hu.bracketboys.webshop.backend.product;
 
 import nl.hu.bracketboys.webshop.backend.category.Category;
+
+import nl.hu.bracketboys.webshop.backend.discount.Discount;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -26,9 +29,6 @@ public class Product {
     @Column(nullable = false)
     private Double price;
 
-    @Column(nullable = false)
-    private boolean discount;
-
     @CreationTimestamp
     private Date created;
 
@@ -37,6 +37,9 @@ public class Product {
 
     @ManyToMany(mappedBy = "products")
     private Set<Category> categories = new HashSet<>();
+
+    @OneToOne(fetch = FetchType.EAGER, optional = true)
+    private Discount discount;
 
     public Product() {
     }
@@ -69,16 +72,17 @@ public class Product {
         return price;
     }
 
+    public Double getCurrentPrice() {
+        if (this.discount != null) {
+            if (new Date().after(this.discount.getBeginDate()) && new Date().before(this.discount.getEndDate())) {
+                return this.price - this.discount.getDiscount();
+            }
+        }
+        return this.price;
+    }
+
     public void setPrice(Double price) {
         this.price = price;
-    }
-
-    public boolean getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(boolean discount) {
-        this.discount = discount;
     }
 
     public Date getCreated() {
@@ -99,5 +103,13 @@ public class Product {
 
     public void addCategory(Category category) {
         this.categories.add(category);
+    }
+      
+      public Discount getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Discount discount) {
+        this.discount = discount;
     }
 }
