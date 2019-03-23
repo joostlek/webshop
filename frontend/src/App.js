@@ -9,6 +9,8 @@ import ProductList from "./components/ProductList";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import Cart from './components/Cart';
+import Authentication from "./components/Authentication";
+
 
 class App extends Component {
     constructor(props) {
@@ -46,10 +48,8 @@ class App extends Component {
                             <Switch>
                                 <Route path="/" component={Product} exact/>
                                 <Route path="/product" component={ProductList}/>
-                                <PrivateRoute path="/cart" component={Cart} isAuthenticated={!!isLoggedIn()}/>
-                                <Route path="/login"
-                                       component={() => (<Login toggleLogin={this.toggleLogin} isLogged={this.state.isLoggedIn} />)}
-                                />
+                                <Route path="/cart" component={Cart} />
+                                <Route path="/login" component={Authentication} />
                             </Switch>
                         </div>
                     </div>
