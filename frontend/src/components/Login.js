@@ -49,7 +49,7 @@ class Login extends Component {
                 if (response.ok) return response.json();
                 else throw "Wrong username/password";
             })
-            .then(function(response) {
+            .then((response) => {
                 sessionStorage["myJWT"] = response.JWT;
                 this.setRedirect();
 
