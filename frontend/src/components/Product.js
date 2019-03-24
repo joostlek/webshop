@@ -10,12 +10,19 @@ class Product extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {products:this.getProducts()};
+        this.state = {products:null};
 
-        // console.log(this.props)
-        console.log(this.state)
+        this.displayProducts();
+
     }
 
+    async displayProducts() {
+        let products;
+        await products = this.getProducts();
+        await this.setState({products:products});
+        console.log(this.state);
+        this.forceUpdate();
+    }
 
     getProducts() {
             var fetchoptions = { method: 'GET'};
@@ -50,20 +57,14 @@ class Product extends Component {
     }
 
     render() {
-        // var test;
-        // if (!this.state.product) {
-        //     console.log(this.state.products);
-        //     // test = <div className="leeg"/>
-        // } else {
-        //     test = <div className="vol"/>
-        // }
-
-        const { test } = this.state;
-        return (
-            <div>
-                <div className="container-fluid">
-                    <div className="content-wrapper">
-                        <div className="item-container">
+        let test;
+        if (!this.state.product) {
+            test = (<div />);
+        } else {
+            test = (
+                    <div className="container-fluid">
+                        <div className="content-wrapper">
+                            <div className="item-container">
                                 <div className="container">
                                     <div className="col-md-6 product-page__container">
                                         <div className="product">
@@ -72,7 +73,7 @@ class Product extends Component {
 
                                             {test}
                                             {/*{this.state.products.map(product => (*/}
-                                                {/*<div>{product.title}</div>*/}
+                                            {/*<div>{product.title}</div>*/}
                                             {/*))}*/}
                                             <img id="item-display" src={productimage} alt="product"/>
                                         </div>
@@ -98,9 +99,16 @@ class Product extends Component {
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+            );
+        }
+
+
+        return (
+            <div>
+                {test}
             </div>
         );
     }
