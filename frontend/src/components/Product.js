@@ -26,30 +26,38 @@ class Product extends Component {
     }
 
     componentDidMount () {
-        console.log("Component did mount")
         var fetchoptions = {method: 'GET'};
         fetch("http://localhost:8082/products/" + this.props.match.params.id, fetchoptions)
             .then((response) => {
                 return response.json();
             })
             .then( (response) => {
-                console.log(response)
                 this.setState({data: response});
             })
     }
 
     saveProductToSession()  {
-        sessionStorage.setItem('amount', this.state.amount)
-        sessionStorage.setItem('title', this.state.data.title)
-        sessionStorage.setItem('description', this.state.data.description)
-        sessionStorage.setItem('price', this.state.data.price)
+        let cart = sessionStorage["cart"] ? JSON.parse(sessionStorage["cart"]) : [];
+
+        let product = {
+            id: this.state.data.id,
+            name: this.state.data.title,
+            price: this.state.data.price,
+            amount: this.state.amount
+        };
+
+        cart.push(product);
+
+        cart = JSON.stringify(cart);
+
+        sessionStorage["cart"] = cart;
     }
 
     render() {
         let test;
 
         if (!this.state.data) {
-            test = (<div></div>);
+            test = (<div />);
         } else {
             test = (
 
@@ -59,18 +67,13 @@ class Product extends Component {
                                 <div className="container">
                                     <div className="col-md-6 product-page__container">
                                         <div className="product">
-                                            {/*{this.getProducts()}*/}
 
-                                            {test}
-                                            {/*{this.state.products.map(product => (*/}
-                                            {/*<div>{product.title}</div>*/}
-                                            {/*))}*/}
                                             <img id="item-display" src={productimage} alt="product"/>
                                         </div>
 
                                         <div id="title" ref="title"><h2>{this.state.data.title}</h2></div>
                                         <div className="product-desc">{this.state.data.description}</div>
-                                        <div className="col-md-3"></div>
+                                        <div className="col-md-3"> </div>
                                         <div className="product-price">€ {this.state.data.price}</div>
                                         <p>aantal</p>
                                         <input className="product-amount" type="number" value={this.state.amount} onChange={this.handleChange} /><br />
