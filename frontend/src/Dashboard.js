@@ -3,7 +3,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import test from "./assets/test.svg";
 
-class Product extends Component {
+class Dashboard extends Component {
   //Testdata
   prod = [
     {
@@ -28,7 +28,7 @@ class Product extends Component {
           {this.prod.map(prod => (
             <div className="col-4">
               <div className="card" style={{ width: 18 + "rem" }}>
-                <img className="card-img-top" src={test} alt="Card image cap" />
+                <img className="card-img-top" src={test} alt="Placeholder" />
                 <div className="card-body">
                   <h5 className="card-title">{prod.Name}</h5>
                   <p className="card-text">{prod.Description}</p>
@@ -45,4 +45,4 @@ class Product extends Component {
   }
 }
 
-export default Product;
+export default Dashboard;

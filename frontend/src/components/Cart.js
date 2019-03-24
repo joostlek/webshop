@@ -34,9 +34,9 @@ class Cart extends Component {
         price: 1.2
       }
     ];
-    //if (! sessionStorage["cart"]) {
-    sessionStorage["cart"] = JSON.stringify(testdata);
-    //}
+    if (!sessionStorage["cart"]) {
+        sessionStorage["cart"] = JSON.stringify(testdata);
+    }
   }
 
   render() {

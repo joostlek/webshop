@@ -1,14 +1,15 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Product from "./Product";
-import Dashboard from "./Dashboard";
+import ProductList from "./components/ProductList";
+import Product from "./components/Product";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import Cart from "./components/Cart";
 import Categorie from "./Categorie";
+import Dashboard from "./Dashboard";
 
 class App extends Component {
   render() {
