@@ -67,7 +67,6 @@ class Product extends Component {
                                 <div className="container">
                                     <div className="col-md-6 product-page__container">
                                         <div className="product">
-
                                             <img id="item-display" src={productimage} alt="product"/>
                                         </div>
 
