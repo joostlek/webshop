@@ -10,7 +10,6 @@ class Login extends Component {
         this.state = {
             username: '',
             password: '',
-            redirect: false
         };
 
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -28,21 +27,6 @@ class Login extends Component {
         this.setState({
             password: event.target.value
         });
-    }
-
-    setRedirect() {
-        this.setState({
-            redirect: true
-        });
-    }
-
-    async renderRedirect() {
-        if (this.state.redirect) {
-            await this.setState({
-                redirect: false
-            });
-            return <Redirect to='/' />
-        }
     }
 
     login() {
@@ -76,7 +60,6 @@ class Login extends Component {
     render() {
         return(
             <div>
-                {this.renderRedirect()}
                 <label className="row">
                     <span className="col-md-2">Username:</span>
                     <input className="col-md-3" type="text" value={this.state.username} onChange={this.handleUsernameChange}/>

@@ -4,29 +4,6 @@ import {Redirect} from "react-router-dom";
 
 class Logout extends Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            redirect: false
-        };
-    }
-
-    setRedirect() {
-        this.setState({
-            redirect: true
-        });
-    }
-
-    async renderRedirect() {
-        if (this.state.redirect) {
-            await this.setState({
-                redirect: false
-            });
-            return <Redirect to='/' />
-        }
-    }
-
     logout() {
         sessionStorage.removeItem("myJWT");
         this.setRedirect();
@@ -35,7 +12,6 @@ class Logout extends Component {
     render() {
         return(
             <div>
-                {this.renderRedirect()}
                 <button className="btn btn-primary" onClick={() => this.logout()}>Logout</button>
             </div>
         );
