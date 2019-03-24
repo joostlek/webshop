@@ -36,9 +36,9 @@ class Login extends Component {
         });
     }
 
-    renderRedirect() {
+    async renderRedirect() {
         if (this.state.redirect) {
-            this.setState({
+            await this.setState({
                 redirect: false
             });
             return <Redirect to='/' />
@@ -64,7 +64,7 @@ class Login extends Component {
                 else throw "Wrong username/password";
             })
             .then((response) => {
-                sessionStorage["myJWT"] = response.JWT;
+                sessionStorage["myJWT"] = response.token;
                 this.setRedirect();
 
             })

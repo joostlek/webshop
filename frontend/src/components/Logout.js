@@ -18,8 +18,11 @@ class Logout extends Component {
         });
     }
 
-    renderRedirect() {
+    async renderRedirect() {
         if (this.state.redirect) {
+            await this.setState({
+                redirect: false
+            });
             return <Redirect to='/' />
         }
     }
