@@ -63,7 +63,8 @@ public class OrderService implements OrderServiceInterface {
 
     @Override
     public Order updateOrderStatus(Long orderId) {
-        Order order = this.orderRepository.getOne(orderId);
+        Order order = this.orderRepository.findById(orderId)
+                .orElseThrow(RuntimeException::new);
         order.setOrderStatus(OrderStatus.DELIVERED);
         return orderRepository.save(order);
     }
