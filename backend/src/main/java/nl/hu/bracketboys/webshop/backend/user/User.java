@@ -44,7 +44,7 @@ public class User {
     private Set<Address> addresses;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> roles;
+    private List<String> roles = new ArrayList<>();
 
     public User() {
         this.addresses = new HashSet<>();
