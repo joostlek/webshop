@@ -24,14 +24,14 @@ public class OrderItem {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private Product product;
 
-    protected OrderItem() {
+    public OrderItem() {
     }
 
     public Long getId() {
         return id;
     }
 
-    protected void setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

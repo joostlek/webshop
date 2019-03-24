@@ -1,6 +1,9 @@
 package nl.hu.bracketboys.webshop.backend.category;
 
 import nl.hu.bracketboys.webshop.backend.category.exceptions.CategoryNotFoundException;
+import nl.hu.bracketboys.webshop.backend.category.repository.CategoryRepository;
+import nl.hu.bracketboys.webshop.backend.category.service.CategoryService;
+import nl.hu.bracketboys.webshop.backend.category.service.CategoryServiceInterface;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;

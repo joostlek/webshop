@@ -1,8 +1,10 @@
 package nl.hu.bracketboys.webshop.backend.address;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import nl.hu.bracketboys.webshop.backend.address.controllers.AddressController;
+import nl.hu.bracketboys.webshop.backend.address.service.AddressServiceInterface;
 import nl.hu.bracketboys.webshop.backend.security.JwtTokenProvider;
-import nl.hu.bracketboys.webshop.backend.user.UserServiceInterface;
+import nl.hu.bracketboys.webshop.backend.user.service.UserServiceInterface;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
