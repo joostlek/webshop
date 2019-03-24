@@ -9,22 +9,24 @@ class Product extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {products:this.getProducts()}
 
-        console.log(this.props)
+        this.state = {products:this.getProducts()};
+
+        // console.log(this.props)
         console.log(this.state)
-
-        this.getProducts = this.getProducts.bind(this)
     }
 
+
     getProducts() {
-        var fetchoptions = { method: 'GET'};
-        fetch("http://localhost:8082/products/" + this.props.match.params.id, fetchoptions)
+            var fetchoptions = { method: 'GET'};
+
+            fetch("http://localhost:8082/products/" + this.props.match.params.id, fetchoptions)
             .then(response => response.json())
-            .then(response => this.setState({response}))
-            // .then(function(myJson) {
-            //     return myJson;
-            // });
+            // .then(products => this.setState({products}))
+            .then(function(myJson) {
+                console.log(myJson)
+                return myJson;
+            });
             // }).catch();
     }
 
@@ -41,6 +43,9 @@ class Product extends Component {
     ];
 
     saveProductToSession(prod) {
+        // let title =  ;
+        // let amount = document.getElementById('product-quantity').innerHTML;
+        // alert(product);
 
     }
 
@@ -52,6 +57,8 @@ class Product extends Component {
         // } else {
         //     test = <div className="vol"/>
         // }
+
+        const { test } = this.state;
         return (
             <div>
                 <div className="container-fluid">
@@ -60,24 +67,27 @@ class Product extends Component {
                                 <div className="container">
                                     <div className="col-md-6 product-page__container">
                                         <div className="product">
-                                            {/*{test}*/}
 
+                                            {this.getProducts()}
+
+                                            {test}
                                             {/*{this.state.products.map(product => (*/}
-                                                {/*<div>{product.name}</div>*/}
+                                                {/*<div>{product.title}</div>*/}
                                             {/*))}*/}
                                             <img id="item-display" src={productimage} alt="product"/>
                                         </div>
 
-                                        {/*<div className="product-title">{prod.title}</div>*/}
-                                        {/*<div className="product-desc">{prod.Description}</div>*/}
-                                        {/*<div className="col-md-3"></div>*/}
-                                        {/*<div className="product-price">$ {prod.Price}</div>*/}
+                                        <div id="title" ref="title">test</div>
+                                        <div className="product-desc"></div>
+                                        <div className="col-md-3"></div>
+                                        <div className="product-price">$ </div>
+                                        <input type="number" className="quantity"/>
 
                                         {/* Foutmelding genereren op basis van voorraad */}
 
                                         <div className="product-stock">Op voorraad</div>
                                         <div className="btn-group cart">
-                                            <button type="button" className="btn btn-success btn-cart">
+                                            <button type="button" className="btn btn-success btn-cart" onClick={this.saveProductToSession()}>
                                                 Voeg toe aan winkelwagen
                                             </button>
                                         </div>
