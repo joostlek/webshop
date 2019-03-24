@@ -1,6 +1,9 @@
 package nl.hu.bracketboys.webshop.backend.user;
 
 import nl.hu.bracketboys.webshop.backend.user.exceptions.UserNotFoundException;
+import nl.hu.bracketboys.webshop.backend.user.repository.UserRepository;
+import nl.hu.bracketboys.webshop.backend.user.service.UserService;
+import nl.hu.bracketboys.webshop.backend.user.service.UserServiceInterface;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;

@@ -2,6 +2,8 @@ package nl.hu.bracketboys.webshop.backend.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.hu.bracketboys.webshop.backend.security.JwtTokenProvider;
+import nl.hu.bracketboys.webshop.backend.user.controllers.UserController;
+import nl.hu.bracketboys.webshop.backend.user.service.UserServiceInterface;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
