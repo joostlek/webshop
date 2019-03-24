@@ -10,25 +10,40 @@ class Product extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {products:null};
+        this.state = { data: [] }
+        // this.state = {products:null};
 
-        this.getProducts();
+        // this.getProducts();
 
     }
 
-    async getProducts() {
-
-        try {
-            var fetchoptions = {method: 'GET'};
-            const response = await fetch("http://localhost:8082/products/" + this.props.match.params.id, fetchoptions);
-            let responseBody = response.json();
-            await this.setState({products: responseBody});
-            console.log(responseBody);
-            this.forceUpdate();
-        } catch(error) {
-            console.log(error);
-        }
+    componentDidMount () {
+        console.log("Component did mount")
+        var fetchoptions = {method: 'GET'};
+        fetch("http://localhost:8082/products/" + this.props.match.params.id, fetchoptions)
+            .then((response) => {
+                return response.json();
+            })
+            .then( (response) => {
+                console.log(response)
+                this.setState({data: response});
+            })
     }
+
+    // async getProducts() {
+    //
+    //     try {
+    //         var fetchoptions = {method: 'GET'};
+    //         const response = fetch("http://localhost:8082/products/" + this.props.match.params.id, fetchoptions)
+    //             .then(response => this.setState({ data: response.data}));
+    //         // let responseBody = response.json();
+    //         // await this.setState({products: responseBody});
+    //         // console.log(responseBody);
+    //         // this.forceUpdate();
+    //     } catch(error) {
+    //         console.log(error);
+    //     }
+    // }
 
 
     //Testdata
@@ -42,24 +57,26 @@ class Product extends Component {
         },
     ];
 
-    saveProductToSession(prod) {
+    saveProductToSession(prod){
 
     }
 
     render() {
         let test;
-        if (!this.state.product) {
-            test = (<div>Leeg</div>);
+        if (!this.state.data) {
+            test = (<div></div>);
         } else {
             test = (
+
                     <div className="container-fluid">
                         <div className="content-wrapper">
                             <div className="item-container">
                                 <div className="container">
                                     <div className="col-md-6 product-page__container">
                                         <div className="product">
+                                            {this.state.data}
 
-                                            {this.getProducts()}
+                                            {/*{this.getProducts()}*/}
 
                                             {test}
                                             {/*{this.state.products.map(product => (*/}
