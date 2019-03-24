@@ -21,6 +21,11 @@ public class ProductService implements ProductServiceInterface {
     }
 
     @Override
+    public Product removeProductFromStorage(Long productId, int amount) {
+        return this.getProductById(productId);
+    }
+
+    @Override
     public Product getProductById(Long id) {
         return productRepository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException(id));
@@ -34,5 +39,10 @@ public class ProductService implements ProductServiceInterface {
     @Override
     public Product save(Product product) {
         return productRepository.save(product);
+    }
+
+    @Override
+    public List<Product> getAllProductsByCategoryId(Long categoryId) {
+        return productRepository.getAllByCategoryId(categoryId);
     }
 }

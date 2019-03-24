@@ -1,13 +1,19 @@
 package nl.hu.bracketboys.webshop.backend.product;
 
+import nl.hu.bracketboys.webshop.backend.category.Category;
+
 import nl.hu.bracketboys.webshop.backend.discount.Discount;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-@Entity(name = "products")
+@Entity
+@Table(name = "products")
 public class Product {
 
     @Id
@@ -30,6 +36,9 @@ public class Product {
     @UpdateTimestamp
     private Date updated;
 
+    @ManyToMany(mappedBy = "products")
+    private Set<Category> categories = new HashSet<>();
+  
     @OneToOne(fetch = FetchType.EAGER)
     private Discount discount;
 
@@ -64,6 +73,15 @@ public class Product {
         return price;
     }
 
+    public Double getCurrentPrice() {
+        if (this.discount != null) {
+            if (new Date().after(this.discount.getBeginDate()) && new Date().before(this.discount.getEndDate())) {
+                return this.price - this.discount.getDiscount();
+            }
+        }
+        return this.price;
+    }
+
     public void setPrice(Double price) {
         this.price = price;
     }
@@ -76,7 +94,19 @@ public class Product {
         return updated;
     }
 
-    public Discount getDiscount() {
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
+
+    public void addCategory(Category category) {
+        this.categories.add(category);
+    }
+      
+      public Discount getDiscount() {
         return discount;
     }
 

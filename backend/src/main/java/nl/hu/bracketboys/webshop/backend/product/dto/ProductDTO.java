@@ -1,6 +1,9 @@
 package nl.hu.bracketboys.webshop.backend.product.dto;
 
+import nl.hu.bracketboys.webshop.backend.category.dto.CategoryDTO;
+
 import java.util.Date;
+import java.util.List;
 
 public class ProductDTO {
 
@@ -15,6 +18,8 @@ public class ProductDTO {
     private Date created;
 
     private Date updated;
+
+    private List<CategoryDTO> categories;
 
     public Long getId() {
         return id;
@@ -62,5 +67,13 @@ public class ProductDTO {
 
     public void setUpdated(Date updated) {
         this.updated = updated;
+    }
+
+    public List<CategoryDTO> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<CategoryDTO> categories) {
+        this.categories = categories;
     }
 }
