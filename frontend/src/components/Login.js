@@ -13,13 +13,20 @@ class Login extends Component {
             redirect: false
         };
 
-        this.handleChange = this.handleChange.bind(this);
+        this.handleUsernameChange = this.handleUsernameChange.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
 
     }
 
-    handleChange(event) {
+    handleUsernameChange(event) {
         this.setState({
-            [event.target.id]: event.target.value
+            username: event.target.value
+        });
+    }
+
+    handlePasswordChange(event) {
+        this.setState({
+            password: event.target.value
         });
     }
 
@@ -65,13 +72,13 @@ class Login extends Component {
                 {this.renderRedirect()}
                 <label className="row">
                     <span className="col-md-2">Username:</span>
-                    <input className="col-md-3" type="text" value={this.state.username} onChange={this.handleChange}/>
+                    <input className="col-md-3" type="text" value={this.state.username} onChange={this.handleUsernameChange}/>
                 </label>
                 <label className="row">
                     <span className="col-md-2">Password:</span>
-                    <input className="col-md-3" type="password" value={this.state.password} onChange={this.handleChange}/>
+                    <input className="col-md-3" type="password" value={this.state.password} onChange={this.handlePasswordChange}/>
                 </label>
-                <button className="btn btn-primary" onClick={this.login()}>Login</button>
+                <button className="btn btn-primary" onClick={() => this.login()}>Login</button>
             </div>
         );
     }
