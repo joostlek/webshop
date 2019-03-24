@@ -15,6 +15,13 @@ import AddProduct from "./components/product/AddProduct";
 import UpdateProduct from "./components/product/UpdateProduct";
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    sessionStorage["cart"] = "[]";
+  }
+
   render() {
     return (
       <Router>
@@ -34,7 +41,7 @@ class App extends Component {
                 <Route path="/" component={Dashboard} exact />
                 <Route path="/product/:id" component={Product} />
                 <Route path="/cart" component={Cart} />
-                <Route path="/categorie/:id" component={Categorie} />
+                <Route path="/categorie/:id" co mponent={Categorie} />
                 <Route path="/login" component={Authentication}/>
                 <Route path="/addproduct" component={AddProduct} />
                 <Route path="/updateproduct/:id" component={UpdateProduct} />
