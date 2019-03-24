@@ -3,11 +3,13 @@ package nl.hu.bracketboys.webshop.backend.user;
 import nl.hu.bracketboys.webshop.backend.address.Address;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.secure.spi.GrantedPermission;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity(name = "users")
 public class User {
@@ -40,6 +42,9 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private Set<Address> addresses;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles;
 
     public User() {
         this.addresses = new HashSet<>();
@@ -111,5 +116,20 @@ public class User {
 
     public Set<Address> getAddresses() {
         return addresses;
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
+
+    public Collection<GrantedAuthority> getGrantedAuthorities() {
+        return this.roles
+                .stream()
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
     }
 }
