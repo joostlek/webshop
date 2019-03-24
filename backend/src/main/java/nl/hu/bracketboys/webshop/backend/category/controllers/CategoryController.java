@@ -4,6 +4,7 @@ import nl.hu.bracketboys.webshop.backend.category.Category;
 import nl.hu.bracketboys.webshop.backend.category.service.CategoryServiceInterface;
 import nl.hu.bracketboys.webshop.backend.category.dto.CategoryDTO;
 import nl.hu.bracketboys.webshop.backend.category.dto.NewCategoryDTO;
+import nl.hu.bracketboys.webshop.backend.product.Product;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.BasePathAwareController;
