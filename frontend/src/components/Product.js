@@ -9,7 +9,7 @@ class Product extends Component {
 
     constructor(props) {
         super(props);
-
+        
         console.log(this.props);
         this.state = {product:this.getProducts()}
     }
@@ -56,7 +56,7 @@ class Product extends Component {
                                     <div className="col-md-6 product-page__container">
                                         <div className="product">
                                             {test}
-                                            {this.state.product} ja
+                                            {this.state.product}
                                             <img id="item-display" src={productimage} alt="product"/>
                                         </div>
 
