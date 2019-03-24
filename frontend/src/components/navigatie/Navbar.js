@@ -7,8 +7,7 @@ export class Navbar extends Component {
     return (
       <nav
         className="navbar navbar-expand-lg navbar-light"
-        style={{ backgroundColor: "#FFFFFF" }}
-      >
+        style={{ backgroundColor: "#FFFFFF" }}>
         <a className="navbar-brand">
           <img src={logo} alt="Logo" />
         </a>
@@ -20,8 +19,8 @@ export class Navbar extends Component {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/product">
-                Products
+              <NavLink className="nav-link" to="/cart">
+                Winkelwagen
               </NavLink>
             </li>
           </ul>

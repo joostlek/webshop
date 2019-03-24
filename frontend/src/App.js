@@ -12,6 +12,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import Authentication from "./components/authentication/Authentication";
 import AddProduct from "./components/product/AddProduct";
 import UpdateProduct from "./components/product/UpdateProduct";
+import Afrekenen from "./components/afrekenen/Afrekenen";
 
 class App extends Component {
 
@@ -44,6 +45,7 @@ class App extends Component {
                 <Route path="/login" component={Authentication}/>
                 <Route path="/addproduct" component={AddProduct} />
                 <Route path="/updateproduct/:id" component={UpdateProduct} />
+                <Route path="/afrekenen" component={Afrekenen} />
               </Switch>
             </div>
           </div>
