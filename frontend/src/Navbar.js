@@ -30,7 +30,7 @@ export class Navbar extends Component {
         <div className="navbar-right">
           <NavLink className="nav-link" to="/cart">
             <i>Cart</i>
-            <span className="badge badge-secondary">2</span>
+            <span className="badge badge-secondary">{JSON.parse(sessionStorage["cart"]).length}</span>
           </NavLink>
         </div>
       </nav>

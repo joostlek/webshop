@@ -13,6 +13,13 @@ import Dashboard from "./Dashboard";
 import AddProduct from "./components/product/AddProduct";
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    sessionStorage["cart"] = "[]";
+  }
+
   render() {
     return (
       <Router>
