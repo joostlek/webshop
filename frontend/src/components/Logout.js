@@ -36,7 +36,7 @@ class Logout extends Component {
         return(
             <div>
                 {this.renderRedirect()}
-                <button className="btn btn-primary" onClick={this.logout()}>Logout</button>
+                <button className="btn btn-primary" onClick={() => this.logout()}>Logout</button>
             </div>
         );
     }
