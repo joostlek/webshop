@@ -10,11 +10,19 @@ class Product extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { data: [] }
-        // this.state = {products:null};
+        this.state = {
+            amount: 0,
+            data: []
+        }
 
-        // this.getProducts();
+        this.handleChange = this.handleChange.bind(this);
 
+    }
+
+    handleChange(event) {
+        this.setState({
+            amount: event.target.value
+        });
     }
 
     componentDidMount () {
@@ -30,39 +38,16 @@ class Product extends Component {
             })
     }
 
-    // async getProducts() {
-    //
-    //     try {
-    //         var fetchoptions = {method: 'GET'};
-    //         const response = fetch("http://localhost:8082/products/" + this.props.match.params.id, fetchoptions)
-    //             .then(response => this.setState({ data: response.data}));
-    //         // let responseBody = response.json();
-    //         // await this.setState({products: responseBody});
-    //         // console.log(responseBody);
-    //         // this.forceUpdate();
-    //     } catch(error) {
-    //         console.log(error);
-    //     }
-    // }
-
-
-    //Testdata
-    prod = [
-        {
-            productId: "5",
-            name: "Corsair GS600 600 Watt PSU",
-            description: "The Corsair Gaming Series GS600 is the ideal price/performance choice for mid-spec gaming PC",
-            category: "Groente",
-            price: 1234.00
-        },
-    ];
-
-    saveProductToSession(prod){
-
+    saveProductToSession()  {
+        sessionStorage.setItem('amount', this.state.amount)
+        sessionStorage.setItem('title', this.state.data.title)
+        sessionStorage.setItem('description', this.state.data.description)
+        sessionStorage.setItem('price', this.state.data.price)
     }
 
     render() {
         let test;
+
         if (!this.state.data) {
             test = (<div></div>);
         } else {
@@ -74,8 +59,6 @@ class Product extends Component {
                                 <div className="container">
                                     <div className="col-md-6 product-page__container">
                                         <div className="product">
-                                            {this.state.data}
-
                                             {/*{this.getProducts()}*/}
 
                                             {test}
@@ -85,18 +68,14 @@ class Product extends Component {
                                             <img id="item-display" src={productimage} alt="product"/>
                                         </div>
 
-                                        <div id="title" ref="title">test</div>
-                                        <div className="product-desc"></div>
+                                        <div id="title" ref="title"><h2>{this.state.data.title}</h2></div>
+                                        <div className="product-desc">{this.state.data.description}</div>
                                         <div className="col-md-3"></div>
-                                        <div className="product-price">$ </div>
-                                        <p>Aantal</p>
-                                        <input type="number" className="quantity"/>
-
-                                        {/* Foutmelding genereren op basis van voorraad */}
-
-                                        <div className="product-stock">Op voorraad</div>
+                                        <div className="product-price">€ {this.state.data.price}</div>
+                                        <p>aantal</p>
+                                        <input className="product-amount" type="number" value={this.state.amount} onChange={this.handleChange} /><br />
                                         <div className="btn-group cart">
-                                            <button type="button" className="btn btn-success btn-cart" onClick={this.saveProductToSession()}>
+                                            <button type="button" className="btn btn-success btn-cart" onClick={()=>this.saveProductToSession()} >
                                                 Voeg toe aan winkelwagen
                                             </button>
                                         </div>
