@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+import ProductList from "./components/ProductList";
 import Dashboard from "./Dashboard";
 import Product from "./components/Product";
-import ProductList from "./components/ProductList";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import Cart from "./components/Cart";
