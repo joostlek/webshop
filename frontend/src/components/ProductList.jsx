@@ -48,7 +48,7 @@ export class ProductList extends Component {
         {this.products.map(product => (
           <div className="col-4" key={product.ProductId}>
             <div className="card" style={{ width: 18 + "rem" }}>
-              <img className="card-img-top" src={test} alt="Card image cap" />
+              <img className="card-img-top" src={test} alt="Placeholder" />
               <div className="card-body">
                 <h5 className="card-title">{product.Name}</h5>
                 <p className="card-text">

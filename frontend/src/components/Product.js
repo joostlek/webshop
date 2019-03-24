@@ -10,13 +10,14 @@ class Product extends Component {
     constructor(props) {
         super(props);
 
+        console.log(this.props);
         this.state = {product:this.getProducts()}
     }
 
     getProducts() {
         var fetchoptions = { method: 'GET'};
 
-        fetch("localhost/products/1", fetchoptions)
+        fetch("http://localhost:8082/products/" + this.props.match.params.id, fetchoptions)
             .then(response => response.json())
             .then(function(myJson) {
                 return myJson;
@@ -51,18 +52,18 @@ class Product extends Component {
                 <div className="container-fluid">
                     <div className="content-wrapper">
                         <div className="item-container">
-                            {this.prod.map(prod => (
                                 <div className="container">
                                     <div className="col-md-6 product-page__container">
                                         <div className="product">
                                             {test}
+                                            {this.state.product} ja
                                             <img id="item-display" src={productimage} alt="product"/>
                                         </div>
 
-                                        <div className="product-title">{prod.Name}</div>
-                                        <div className="product-desc">{prod.Description}</div>
-                                        <div className="col-md-3"></div>
-                                        <div className="product-price">$ {prod.Price}</div>
+                                        {/*<div className="product-title">{prod.title}</div>*/}
+                                        {/*<div className="product-desc">{prod.Description}</div>*/}
+                                        {/*<div className="col-md-3"></div>*/}
+                                        {/*<div className="product-price">$ {prod.Price}</div>*/}
 
                                         {/* Foutmelding genereren op basis van voorraad */}
 
@@ -79,7 +80,6 @@ class Product extends Component {
                                         </div>
                                     </div>
                                 </div>
-                            ))}
                         </div>
                     </div>
                 </div>

@@ -10,6 +10,7 @@ import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import Cart from "./components/Cart";
 import Categorie from "./Categorie";
+import Dashboard from "./Dashboard";
 
 class App extends Component {
   render() {
