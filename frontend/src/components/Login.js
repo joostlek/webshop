@@ -38,6 +38,9 @@ class Login extends Component {
 
     renderRedirect() {
         if (this.state.redirect) {
+            this.setState({
+                redirect: false
+            });
             return <Redirect to='/' />
         }
     }
@@ -45,13 +48,17 @@ class Login extends Component {
     login() {
         let fetchoptions = {
             method: "POST",
-            body: {
-                'username': this.state.username,
-                'password': this.state.password
-            }
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: this.state.username,
+                password: this.state.password
+            })
         };
 
-        fetch("localhost:8082/users/signin", fetchoptions)
+        fetch("http://localhost:8082/users/signin", fetchoptions)
             .then(function(response) {
                 if (response.ok) return response.json();
                 else throw "Wrong username/password";
