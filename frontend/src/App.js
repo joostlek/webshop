@@ -3,7 +3,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
-import Product from "./Product";
+import Product from "./components/Product";
 import ProductList from "./components/ProductList";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";

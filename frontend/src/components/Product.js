@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import "./App.css";
-import "./product.css"
+import "../App.css";
+import ".//src/components/product.css"
 import "bootstrap/dist/css/bootstrap.css";
 import productimage from "./assets/product.jpg";
 // import "./components/variables.js";
