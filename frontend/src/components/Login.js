@@ -44,7 +44,7 @@ class Login extends Component {
             }
         };
 
-        fetch("localhost/api/v1/login", fetchoptions)
+        fetch("localhost:8082/users/signin", fetchoptions)
             .then(function(response) {
                 if (response.ok) return response.json();
                 else throw "Wrong username/password";
