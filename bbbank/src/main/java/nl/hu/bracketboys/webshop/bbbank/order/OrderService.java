@@ -1,6 +1,5 @@
 package nl.hu.bracketboys.webshop.bbbank.order;
 
-import nl.hu.bracketboys.webshop.bbbank.order.dto.OrderDTO;
 import nl.hu.bracketboys.webshop.bbbank.order.exceptions.OrderNotFoundException;
 import org.springframework.amqp.core.Exchange;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -35,8 +34,6 @@ public class OrderService implements OrderServiceInterface {
     public void updateOrderStatus(Long orderId) {
         Order order = this.getOrderById(orderId);
         order.setOrderStatus(OrderStatus.IN_PROGRESS);
-        OrderDTO orderDTO = new OrderDTO();
-        orderDTO.setId(orderId);
-        rabbitTemplate.convertAndSend(exchange.getName(), PAID_ORDER_ROUTING_KEY, orderDTO);
+        rabbitTemplate.convertAndSend(exchange.getName(), PAID_ORDER_ROUTING_KEY, orderId);
     }
 }
