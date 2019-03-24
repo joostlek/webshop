@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import "./App.css";
+import "../../assets/css/App.css";
 import "bootstrap/dist/css/bootstrap.css";
-import test from "./assets/test.svg";
+import test from "./assets/image/test.svg";
 
 class Product extends Component {
   //Testdata

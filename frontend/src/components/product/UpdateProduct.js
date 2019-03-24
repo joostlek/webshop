@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import "../../App.css";
-import "../product.css"
+import "../../assets/css/App.css";
+import "../../assets/css/product.css";
 import "bootstrap/dist/css/bootstrap.css";
 
 class UpdateProduct extends Component {

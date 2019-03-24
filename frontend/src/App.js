@@ -1,16 +1,15 @@
 import React, {Component} from "react";
-import "./App.css";
+import "../../assets/css/App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import ProductList from "./components/ProductList";
-import Product from "./components/Product";
-import Navbar from "./Navbar";
-import Sidebar from "./Sidebar";
-import Cart from "./components/Cart";
-import Categorie from "./Categorie";
-import Dashboard from "./Dashboard";
-import Authentication from "./components/Authentication";
+import GetProduct from "./components/product/GetProduct";
+import Navbar from "./components/navigatie/Navbar";
+import Sidebar from "./components/navigatie/Sidebar";
+import Cart from "./components/cart/Cart";
+import Categorie from "./components/categorie/Categorie";
+import Dashboard from "./components/dashboard/Dashboard";
+import Authentication from "./components/authentication/Authentication";
 import AddProduct from "./components/product/AddProduct";
 import UpdateProduct from "./components/product/UpdateProduct";
 
@@ -39,7 +38,7 @@ class App extends Component {
             <div className="col-10">
               <Switch>
                 <Route path="/" component={Dashboard} exact />
-                <Route path="/product/:id" component={Product} />
+                <Route path="/product/:id" component={GetProduct} />
                 <Route path="/cart" component={Cart} />
                 <Route path="/categorie/:id" co mponent={Categorie} />
                 <Route path="/login" component={Authentication}/>

@@ -1,8 +1,8 @@
 import React, {Component} from "react";
-import "../../App.css";
-import "../product.css"
+import "../../assets/css/App.css";
+import "../../assets/css/product.css";
 import "bootstrap/dist/css/bootstrap.css";
-import productimage from "../../assets/product.jpg";
+import productimage from "../../assets/img/product.jpg";
 
 class DeleteProduct extends Component {
 
@@ -28,7 +28,7 @@ class DeleteProduct extends Component {
 
         fetch("http://localhost:8082/products/" + this.props.id, fetchoptions)
             .then(function(response) {
-                if (response.ok) alert("Product deleted");
+                if (response.ok) alert("GetProduct deleted");
             })
             .catch(function(error) {
                 console.log(error);

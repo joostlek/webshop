@@ -22,7 +22,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
-@DisplayName("Product Service")
+@DisplayName("GetProduct Service")
 @Tag("services")
 class ProductServiceTest {
 

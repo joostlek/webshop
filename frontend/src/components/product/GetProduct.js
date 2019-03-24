@@ -1,11 +1,11 @@
 import React, {Component} from "react";
-import "../App.css";
-import "./product.css"
+import "../../assets/css/App.css";
+import "../../assets/css/product.css";
 import "bootstrap/dist/css/bootstrap.css";
 import productimage from "../assets/product.jpg";
 // import "./components/variables.js";
 
-class Product extends Component {
+class GetProduct extends Component {
 
     constructor(props) {
         super(props);
@@ -133,4 +133,4 @@ class Product extends Component {
     }
 }
 
-export default Product;
+export default GetProduct;
