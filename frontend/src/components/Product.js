@@ -13,12 +13,11 @@ class Product extends Component {
         this.state = {products:null};
 
         this.displayProducts();
-
     }
 
     async displayProducts() {
         let products;
-        await products = this.getProducts();
+        products = await this.getProducts();
         await this.setState({products:products});
         console.log(this.state);
         this.forceUpdate();
@@ -31,7 +30,6 @@ class Product extends Component {
             .then(response => response.json())
             // .then(products => this.setState({products}))
             .then(function(myJson) {
-                console.log(myJson)
                 return myJson;
             });
             // }).catch();
@@ -50,9 +48,6 @@ class Product extends Component {
     ];
 
     saveProductToSession(prod) {
-        // let title =  ;
-        // let amount = document.getElementById('product-quantity').innerHTML;
-        // alert(product);
 
     }
 
@@ -82,6 +77,7 @@ class Product extends Component {
                                         <div className="product-desc"></div>
                                         <div className="col-md-3"></div>
                                         <div className="product-price">$ </div>
+                                        <p>Aantal</p>
                                         <input type="number" className="quantity"/>
 
                                         {/* Foutmelding genereren op basis van voorraad */}
