@@ -21,6 +21,8 @@ public class ProductDTO {
 
     private List<CategoryDTO> categories;
 
+    private DiscountDTO discount;
+
     public Long getId() {
         return id;
     }
@@ -75,5 +77,13 @@ public class ProductDTO {
 
     public void setCategories(List<CategoryDTO> categories) {
         this.categories = categories;
+    }
+
+    public DiscountDTO getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(DiscountDTO discount) {
+        this.discount = discount;
     }
 }
