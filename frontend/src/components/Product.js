@@ -55,8 +55,32 @@ class Product extends Component {
         sessionStorage["cart"] = cart;
     }
 
+    isAdmin() {
+        let jwtData = sessionStorage["myJWT"].split(".")[1];
+        let jwtRoleData = JSON.parse( window.atob(jwtData) ).auth;
+
+        for (let i=0; i<jwtRoleData.length; i++) {
+            if (jwtRoleData[i].authority === "ROLE_ADMIN") {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     render() {
         let test;
+
+        let deleteButton = <div />;
+
+        if (this.isAdmin()) {
+            deleteButton = (
+                <button type="button" className="btn btn-danger">
+                    Verwijder product van de catalogus
+                </button>
+            );
+        }
+
 
         if (!this.state.data) {
             test = (<div />);
@@ -87,6 +111,9 @@ class Product extends Component {
                                             <button type="button" className="btn btn-danger">
                                                 Terug naar de categorie
                                             </button>
+                                        </div>
+                                        <div className="btn-group delete">
+                                            {deleteButton}
                                         </div>
                                     </div>
                                 </div>
