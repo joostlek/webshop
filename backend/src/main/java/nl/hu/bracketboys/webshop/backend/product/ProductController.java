@@ -41,6 +41,14 @@ public class ProductController {
         return convertToDTO(productService.getProductById(productId));
     }
 
+    @GetMapping("/categories/{categoryId}/products")
+    public List<ProductDTO> getAllProductsByCategoryId(@PathVariable Long categoryId) {
+        return this.productService.getAllProductsByCategoryId(categoryId)
+                .stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
     private ProductDTO convertToDTO(Product product) {
         return modelMapper.map(product, ProductDTO.class);
     }

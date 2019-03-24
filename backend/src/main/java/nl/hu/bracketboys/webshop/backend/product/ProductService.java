@@ -40,4 +40,9 @@ public class ProductService implements ProductServiceInterface {
     public Product save(Product product) {
         return productRepository.save(product);
     }
+
+    @Override
+    public List<Product> getAllProductsByCategoryId(Long categoryId) {
+        return productRepository.getAllByCategoryId(categoryId);
+    }
 }

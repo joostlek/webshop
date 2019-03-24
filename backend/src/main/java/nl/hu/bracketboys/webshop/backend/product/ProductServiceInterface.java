@@ -12,4 +12,6 @@ public interface ProductServiceInterface {
     void delete(Long id);
 
     Product save(Product product);
+
+    List<Product> getAllProductsByCategoryId(Long categoryId);
 }
