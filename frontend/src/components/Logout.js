@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import "bootstrap/dist/css/bootstrap.css";
-import {Redirect} from "react-router-dom";
 
 class Logout extends Component {
 
+    constructor(props) {
+        super(props);
+    }
+
     logout() {
         sessionStorage.removeItem("myJWT");
-        this.setRedirect();
+        sessionStorage.removeItem("cart");
+        this.props.updatePage();
     }
 
     render() {

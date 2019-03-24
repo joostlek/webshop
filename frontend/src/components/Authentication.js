@@ -8,14 +8,19 @@ class Authentication extends Component {
     constructor(props) {
         super(props);
 
+        this.updatePage = this.updatePage.bind(this);
+    }
+
+    updatePage() {
+        this.forceUpdate();
     }
 
     render() {
         let component;
         if (sessionStorage["myJWT"]) {
-            component = <Logout />;
+            component = <Logout updatePage={this.updatePage} />;
         } else {
-            component = <Login />;
+            component = <Login updatePage={this.updatePage} />;
         }
 
         console.log(component);

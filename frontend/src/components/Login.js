@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import "bootstrap/dist/css/bootstrap.css";
-import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
 
@@ -49,8 +48,7 @@ class Login extends Component {
             })
             .then((response) => {
                 sessionStorage["myJWT"] = response.token;
-                this.setRedirect();
-
+                this.props.updatePage();
             })
             .catch(function(error) {
                 console.log(error);
