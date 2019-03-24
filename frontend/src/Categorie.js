@@ -1,80 +1,45 @@
 import React, { Component } from "react";
+import "bootstrap/dist/css/bootstrap.css";
+import "./App.css";
+import { BrowserRouter as Router, NavLink } from "react-router-dom";
 
 class Categorie extends Component {
-  products = [
-    {
-      id: 1,
-      title: "string",
-      description: "string",
-      price: 0,
-      created: "2019-03-22T10:29:09.338+0000",
-      updated: "2019-03-22T10:29:09.338+0000",
-      category: 1
-    },
-    {
-      id: 2,
-      title: "paprika",
-      description: "string",
-      price: 50,
-      created: "2019-03-22T10:40:21.457+0000",
-      updated: "2019-03-22T10:40:21.457+0000",
-      category: 6
-    },
-    {
-      id: 3,
-      title: "paprika",
-      description: "string",
-      price: 50,
-      created: "2019-03-22T10:40:23.348+0000",
-      updated: "2019-03-22T10:40:23.348+0000",
-      category: 6
-    },
-    {
-      id: 4,
-      title: "paprika",
-      description: "string",
-      price: 50,
-      created: "2019-03-22T10:42:57.707+0000",
-      updated: "2019-03-22T10:42:57.707+0000",
-      category: 6
-    },
-    {
-      id: 5,
-      title: "paprika",
-      description: "string",
-      price: 50,
-      created: "2019-03-22T10:42:58.999+0000",
-      updated: "2019-03-22T10:42:58.999+0000",
-      category: 6
-    },
-    {
-      id: 6,
-      title: "paprika",
-      description: "string",
-      price: 50,
-      created: "2019-03-22T10:43:00.785+0000",
-      updated: "2019-03-22T10:43:00.785+0000",
-      category: 6
-    },
-    {
-      id: 7,
-      title: "test",
-      description: "string",
-      price: 3,
-      created: "2019-03-22T11:21:37.866+0000",
-      updated: "2019-03-22T11:21:37.866+0000",
-      category: 1
-    }
-  ];
+  constructor(props) {
+    super(props);
+
+    this.state = { products: [] };
+  }
+
+  //gets all products from api and put them in this.state
+  componentDidMount() {
+    var fetchoptions = { method: "GET" };
+    fetch("http://localhost:8082/products/", fetchoptions)
+      .then(response => {
+        return response.json();
+      })
+      .then(response => {
+        this.setState({ products: response });
+      });
+  }
 
   render() {
     return (
       <div>
-        <h3>Categorie: "placeholder"</h3>
+        <h3>Categorie</h3>
+        <p>Deze categorie bevat de volgende producten:</p>
         <ul>
-          {this.products.map(product => (
-            <li className="list-group-item">{product.id}</li>
-          ))}
+          {this.state.products.map(product =>
+            this.props.match.params.id == product.category ? (
+              <li className="list-group-item" key={product.id}>
+                <label id="productp">{product.title}</label>
+                <button className="btn btn-outline-info">
+                  <NavLink to={"/product/" + product.id}>
+                    Bekijk product
+                  </NavLink>
+                </button>
+              </li>
+            ) : null
+          )}
         </ul>
       </div>
     );

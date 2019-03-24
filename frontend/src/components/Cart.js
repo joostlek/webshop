@@ -54,7 +54,7 @@ class Cart extends Component {
             />
           ))}
         </div>
-        <button className="btn btn-primary">koop</button>
+        <button className="btn btn-primary">Bestelling afronden</button>
       </div>
     );
   }

@@ -26,7 +26,7 @@ class Product extends Component {
         <h1>Aanbiedingen van deze week</h1>
         <div className="row">
           {this.prod.map(prod => (
-            <div className="col-4">
+            <div className="col-4" key={prod.ProductId}>
               <div className="card" style={{ width: 18 + "rem" }}>
                 <img className="card-img-top" src={test} alt="Card image cap" />
                 <div className="card-body">

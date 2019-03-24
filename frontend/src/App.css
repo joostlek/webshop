@@ -31,3 +31,8 @@
     transform: rotate(360deg);
   }
 }
+
+#productp {
+  margin: 5px;
+  width: 50px;
+}

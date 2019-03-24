@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import logo from "./assets/logo.png";
 import { NavLink } from "react-router-dom";
-import Cart from "./components/Cart";
 
 export class Navbar extends Component {
   render() {
@@ -21,17 +20,11 @@ export class Navbar extends Component {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/product">
-                Products
+              <NavLink className="nav-link" to="/cart">
+                Winkelwagen
               </NavLink>
             </li>
           </ul>
-        </div>
-        <div className="navbar-right">
-          <NavLink className="nav-link" to="/cart">
-            <i>Cart</i>
-            <span className="badge badge-secondary">2</span>
-          </NavLink>
         </div>
       </nav>
     );
