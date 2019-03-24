@@ -1,6 +1,7 @@
 package nl.hu.bracketboys.webshop.backend.address;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import nl.hu.bracketboys.webshop.backend.security.JwtTokenProvider;
 import nl.hu.bracketboys.webshop.backend.user.UserServiceInterface;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -43,6 +44,9 @@ class AddressControllerTest {
 
     @MockBean
     private UserServiceInterface userService;
+
+    @MockBean
+    private JwtTokenProvider jwtTokenProvider;
 
     private Address address = new Address();
 

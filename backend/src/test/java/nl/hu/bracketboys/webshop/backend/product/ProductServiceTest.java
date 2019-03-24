@@ -1,5 +1,6 @@
 package nl.hu.bracketboys.webshop.backend.product;
 
+import nl.hu.bracketboys.webshop.backend.category.CategoryServiceInterface;
 import nl.hu.bracketboys.webshop.backend.product.exceptions.ProductNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -30,6 +31,9 @@ class ProductServiceTest {
 
     @Autowired
     private ProductServiceInterface productService;
+
+    @MockBean
+    private CategoryServiceInterface categoryService;
 
     private Product product = new Product();
 
@@ -93,9 +97,12 @@ class ProductServiceTest {
         @Autowired
         private ProductRepository productRepository;
 
+        @Autowired
+        private CategoryServiceInterface categoryService;
+
         @Bean
         public ProductServiceInterface productServiceInterface() {
-            return new ProductService(productRepository);
+            return new ProductService(productRepository, categoryService);
         }
     }
 }

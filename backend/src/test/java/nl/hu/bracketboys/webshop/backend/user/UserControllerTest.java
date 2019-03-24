@@ -1,6 +1,7 @@
 package nl.hu.bracketboys.webshop.backend.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import nl.hu.bracketboys.webshop.backend.security.JwtTokenProvider;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -38,6 +39,9 @@ class UserControllerTest {
 
     @MockBean
     private UserServiceInterface userService;
+
+    @MockBean
+    private JwtTokenProvider jwtTokenProvider;
 
     private User user = new User();
 

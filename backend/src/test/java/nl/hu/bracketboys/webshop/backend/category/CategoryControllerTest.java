@@ -2,6 +2,7 @@ package nl.hu.bracketboys.webshop.backend.category;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.hu.bracketboys.webshop.backend.category.dto.NewCategoryDTO;
+import nl.hu.bracketboys.webshop.backend.security.JwtTokenProvider;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -40,6 +41,9 @@ class CategoryControllerTest {
 
     @MockBean
     private CategoryServiceInterface categoryService;
+
+    @MockBean
+    private JwtTokenProvider jwtTokenProvider;
 
     private Category category = new Category();
 
