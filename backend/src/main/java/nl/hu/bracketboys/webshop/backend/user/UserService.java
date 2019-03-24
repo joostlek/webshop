@@ -2,12 +2,15 @@ package nl.hu.bracketboys.webshop.backend.user;
 
 import nl.hu.bracketboys.webshop.backend.user.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UserService implements UserServiceInterface {
+public class UserService implements UserServiceInterface, UserDetailsService {
     private final UserRepository userRepository;
 
     @Autowired
@@ -40,5 +43,11 @@ public class UserService implements UserServiceInterface {
     @Override
     public User save(User user) {
         return userRepository.save(user);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = this.getUserByEmail(email);
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), user.getGrantedAuthorities());
     }
 }

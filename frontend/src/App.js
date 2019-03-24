@@ -10,6 +10,7 @@ import Sidebar from "./Sidebar";
 import Cart from "./components/Cart";
 import Categorie from "./Categorie";
 import Dashboard from "./Dashboard";
+import Authentication from "./components/Authentication";
 
 class App extends Component {
   render() {
@@ -32,6 +33,7 @@ class App extends Component {
                 <Route path="/product/:id" component={Product} />
                 <Route path="/cart" component={Cart} />
                 <Route path="/categorie/:id" component={Categorie} />
+                <Route path="/login" component={Authentication}/>
               </Switch>
             </div>
           </div>
