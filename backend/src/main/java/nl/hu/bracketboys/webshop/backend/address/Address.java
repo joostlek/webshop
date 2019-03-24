@@ -43,7 +43,7 @@ public class Address {
         return id;
     }
 
-    protected void setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -1,6 +1,9 @@
 package nl.hu.bracketboys.webshop.backend.address;
 
 import nl.hu.bracketboys.webshop.backend.address.exceptions.AddressNotFoundException;
+import nl.hu.bracketboys.webshop.backend.address.repository.AddressRepository;
+import nl.hu.bracketboys.webshop.backend.address.service.AddressService;
+import nl.hu.bracketboys.webshop.backend.address.service.AddressServiceInterface;
 import nl.hu.bracketboys.webshop.backend.user.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

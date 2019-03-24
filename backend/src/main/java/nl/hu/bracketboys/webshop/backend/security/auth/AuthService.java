@@ -2,7 +2,7 @@ package nl.hu.bracketboys.webshop.backend.security.auth;
 
 import nl.hu.bracketboys.webshop.backend.security.CustomException;
 import nl.hu.bracketboys.webshop.backend.security.JwtTokenProvider;
-import nl.hu.bracketboys.webshop.backend.user.UserServiceInterface;
+import nl.hu.bracketboys.webshop.backend.user.service.UserServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;

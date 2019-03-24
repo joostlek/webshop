@@ -1,7 +1,9 @@
 package nl.hu.bracketboys.webshop.backend.category;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import nl.hu.bracketboys.webshop.backend.category.controllers.CategoryController;
 import nl.hu.bracketboys.webshop.backend.category.dto.NewCategoryDTO;
+import nl.hu.bracketboys.webshop.backend.category.service.CategoryServiceInterface;
 import nl.hu.bracketboys.webshop.backend.security.JwtTokenProvider;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

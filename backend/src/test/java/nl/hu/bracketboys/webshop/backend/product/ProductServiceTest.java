@@ -1,7 +1,10 @@
 package nl.hu.bracketboys.webshop.backend.product;
 
-import nl.hu.bracketboys.webshop.backend.category.CategoryServiceInterface;
+import nl.hu.bracketboys.webshop.backend.category.service.CategoryServiceInterface;
 import nl.hu.bracketboys.webshop.backend.product.exceptions.ProductNotFoundException;
+import nl.hu.bracketboys.webshop.backend.product.repository.ProductRepository;
+import nl.hu.bracketboys.webshop.backend.product.service.ProductService;
+import nl.hu.bracketboys.webshop.backend.product.service.ProductServiceInterface;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
