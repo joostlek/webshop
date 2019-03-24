@@ -12,8 +12,32 @@ class AddProduct extends Component {
         this.state = {
             title: '',
             description: '',
-            price: ''
+            price: 0
         }
+
+        // Bind handleChanges
+        this.handleTitleChange = this.handleTitleChange.bind(this);
+        this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+        this.handlePriceChange = this.handlePriceChange.bind(this);
+
+    }
+
+    handleTitleChange(event) {
+        this.setState({
+            title: event.target.value
+        });
+    }
+
+    handleDescriptionChange(event) {
+        this.setState({
+            description: event.target.value
+        });
+    }
+
+    handlePriceChange(event) {
+        this.setState({
+            price: event.target.value
+        });
     }
 
     save() {
@@ -26,17 +50,17 @@ class AddProduct extends Component {
             body: JSON.stringify({
                 title: this.state.title,
                 description: this.state.description,
-                price: this.state.description
+                price: this.state.price
             })
         };
 
-        fetch("http://localhost:8082/users/signin", fetchoptions)
+        fetch("http://localhost:8082/products", fetchoptions)
             .then(function(response) {
                 if (response.ok) return response.json();
-                else throw "Wrong username/password";
+                else throw "Er is iets fout gegaan met het toevoegen van het product.";
             })
             .then((response) => {
-                sessionStorage["myJWT"] = response.token;
+                alert(response.title + 'is toegevoegd')
                 this.props.updatePage();
             })
             .catch(function(error) {
@@ -54,18 +78,22 @@ class AddProduct extends Component {
                                 <div className="">
                                     <h1>Product toevoegen</h1>
                                     <label>Voeg hier de foto toe</label><br />
-                                    <input className="addProduct" type="text"/>
+                                    <input className="addProduct" type="text" />
+                                </div>
+                                <div>
+                                    <label>titel</label><br />
+                                    <input className="addProduct" type="text" value={this.state.title} onChange={this.handleTitleChange} />
                                 </div>
                                 <div>
                                     <label>beschrijving</label><br />
-                                    <input className="addProduct" type="text" />
+                                    <input className="addProduct" type="text" value={this.state.description} onChange={this.handleDescriptionChange} />
                                 </div>
                                 <div>
                                     <label>prijs</label><br />
-                                    <input className="addProduct" type="text" />
+                                    <input className="addProduct" type="number" value={this.state.price} onChange={this.handlePriceChange} />
                                 </div>
                                 <div className="btn-group cart">
-                                    <button type="button" className="btn btn-success btn-cart" onClick={()=>this.saveProductToSession()} >
+                                    <button type="button" className="btn btn-success btn-cart" onClick={()=>this.save()} >
                                         Voeg product toe
                                     </button>
                                 </div>
