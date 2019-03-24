@@ -9,21 +9,25 @@ class Product extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {products:this.getProducts()}
 
-        console.log(this.props);
-        this.state = {product:this.getProducts()}
+        console.log(this.props)
+        console.log(this.state)
+
+        this.getProducts = this.getProducts.bind(this)
     }
 
     getProducts() {
         var fetchoptions = { method: 'GET'};
-
         fetch("http://localhost:8082/products/" + this.props.match.params.id, fetchoptions)
             .then(response => response.json())
-            .then(function(myJson) {
-                return myJson;
-            });
+            .then(response => this.setState({response}))
+            // .then(function(myJson) {
+            //     return myJson;
+            // });
             // }).catch();
     }
+
 
     //Testdata
     prod = [
@@ -41,12 +45,13 @@ class Product extends Component {
     }
 
     render() {
-        var test;
-        if (!this.state.product) {
-            test = <div className="leeg"/>
-        } else {
-            test = <div className="vol"/>
-        }
+        // var test;
+        // if (!this.state.product) {
+        //     console.log(this.state.products);
+        //     // test = <div className="leeg"/>
+        // } else {
+        //     test = <div className="vol"/>
+        // }
         return (
             <div>
                 <div className="container-fluid">
@@ -55,8 +60,11 @@ class Product extends Component {
                                 <div className="container">
                                     <div className="col-md-6 product-page__container">
                                         <div className="product">
-                                            {test}
-                                            {this.state.product} ja
+                                            {/*{test}*/}
+
+                                            {/*{this.state.products.map(product => (*/}
+                                                {/*<div>{product.name}</div>*/}
+                                            {/*))}*/}
                                             <img id="item-display" src={productimage} alt="product"/>
                                         </div>
 

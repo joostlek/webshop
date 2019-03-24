@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import ProductList from "./components/ProductList";
-import Dashboard from "./Dashboard";
 import Product from "./components/Product";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
