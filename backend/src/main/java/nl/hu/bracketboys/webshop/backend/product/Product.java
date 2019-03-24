@@ -12,7 +12,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity(name = "products")
+@Entity
+@Table(name = "products")
 public class Product {
 
     @Id

@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    @Query("select p from Product p inner join p.categories category on category.id = :id")
+    @Query("select p from Product p inner join Category category on category.id = :id")
     List<Product> getAllByCategoryId(@Param("id") Long categoryId);
 }
