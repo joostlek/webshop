@@ -48,7 +48,7 @@ public class User {
     private Set<Order> orders;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> roles;
+    private List<String> roles = new ArrayList<>();
 
     public User() {
     }
