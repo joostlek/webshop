@@ -51,6 +51,15 @@ public class ProductService implements ProductServiceInterface {
         return productRepository.getAllByCategoryId(categoryId);
     }
 
+    @Override
+    public Product updateProduct(Product product) {
+        Product newProduct = this.getProductById(product.getId());
+        newProduct.setDescription(product.getDescription());
+        newProduct.setPrice(product.getPrice());
+        newProduct.setTitle(product.getTitle());
+        return this.saveProduct(product);
+    }
+
     private Product saveProduct(Product product) {
         if (product.getPrice() < 0) {
             throw new RuntimeException("Price is below zero");

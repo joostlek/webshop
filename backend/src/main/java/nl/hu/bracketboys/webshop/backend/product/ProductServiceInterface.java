@@ -14,4 +14,6 @@ public interface ProductServiceInterface {
     Product save(Product product);
 
     List<Product> getAllProductsByCategoryId(Long categoryId);
+
+    Product updateProduct(Product product);
 }
