@@ -7,10 +7,20 @@ import productimage from "./assets/product.jpg";
 
 class Product extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {product:this.getProducts()}
+    }
+
     getProducts() {
-        fetch("127.0.0.1")
-            .then(result=>result.json())
-            .then(items=>this.setState({items}))
+        var fetchoptions = { method: 'GET'};
+
+        fetch("localhost/products/1", fetchoptions)
+            .then(response => response.json());
+            .then(function(myJson) {
+                return myJson;
+            // }).catch();
     }
 
     //Testdata
@@ -29,6 +39,12 @@ class Product extends Component {
     }
 
     render() {
+        var test;
+        if (!this.state.product) {
+            test = <div className="leeg"/>
+        } else {
+            test = <div className="vol"/>
+        }
         return (
             <div>
                 <div className="container-fluid">
@@ -38,6 +54,7 @@ class Product extends Component {
                                 <div className="container">
                                     <div className="col-md-6 product-page__container">
                                         <div className="product">
+                                            {test}
                                             <img id="item-display" src={productimage}/>
                                         </div>
 
