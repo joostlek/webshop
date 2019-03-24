@@ -71,7 +71,7 @@ class Dashboard extends Component {
                 <div className="card-body">
                   <h5 className="card-title">{prod.title}</h5>
                   <p className="card-text">{prod.description}</p>
-                  <NavLink to={"/products/"+prod.id}>Bekijk Product</NavLink>
+                  <NavLink to={"/product/"+prod.id}>Bekijk Product</NavLink>
                 </div>
               </div>
             </div>

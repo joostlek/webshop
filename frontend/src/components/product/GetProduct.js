@@ -33,6 +33,9 @@ class GetProduct extends Component {
                 return response.json();
             })
             .then( (response) => {
+                if (response.discount) {
+                    response.price = response.discount.discount;
+                }
                 this.setState({data: response});
             })
     }
