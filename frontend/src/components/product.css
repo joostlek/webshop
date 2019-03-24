@@ -26,6 +26,10 @@
     margin-bottom: 10px;
 }
 
+.addProduct {
+    margin-bottom: 30px;
+}
+
 .product>img{
     max-width: 450px;
 }

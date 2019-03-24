@@ -11,6 +11,8 @@ import Cart from "./components/Cart";
 import Categorie from "./Categorie";
 import Dashboard from "./Dashboard";
 import Authentication from "./components/Authentication";
+import AddProduct from "./components/product/AddProduct";
+import UpdateProduct from "./components/product/UpdateProduct";
 
 class App extends Component {
   render() {
@@ -34,6 +36,8 @@ class App extends Component {
                 <Route path="/cart" component={Cart} />
                 <Route path="/categorie/:id" component={Categorie} />
                 <Route path="/login" component={Authentication}/>
+                <Route path="/addproduct" component={AddProduct} />
+                <Route path="/updateproduct/:id" component={UpdateProduct} />
               </Switch>
             </div>
           </div>
