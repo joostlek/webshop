@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import "../../assets/css/App.css";
+import "./assets/css/App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -18,8 +18,9 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-
-    sessionStorage["cart"] = "[]";
+    if(!sessionStorage["cart"]){
+      sessionStorage["cart"] = "[]";
+    }
   }
 
   render() {

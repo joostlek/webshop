@@ -1,6 +1,33 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
+const test = [
+  {
+    id: 1,
+    naam: "Fruit"
+  },
+  {
+    id: 2,
+    naam: "Groente"
+  },
+  {
+    id: 3,
+    naam: "Zuivel"
+  },
+  {
+    id: 4,
+    naam: "Frisdrank"
+  },
+  {
+    id: 5,
+    naam: "Vlees"
+  },
+  {
+    id: 6,
+    naam: "Snack"
+  }
+];
+
 export class Sidebar extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +52,7 @@ export class Sidebar extends Component {
       <div>
         <ul>
           <li className="list-group-item active">Categoriën</li>
-          {categories.map(({ id, naam }) => (
+          {test.map(({ id, naam }) => (
             <li className="list-group-item" key={id}>
               <NavLink to={"/categorie/" + id}>{naam}</NavLink>
             </li>

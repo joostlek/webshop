@@ -2,8 +2,7 @@ import React, {Component} from "react";
 import "../../assets/css/App.css";
 import "../../assets/css/product.css";
 import "bootstrap/dist/css/bootstrap.css";
-import productimage from "../assets/product.jpg";
-// import "./components/variables.js";
+import productimage from "../../assets/img/product.jpg";
 
 class GetProduct extends Component {
 
@@ -57,6 +56,10 @@ class GetProduct extends Component {
 
 
     isAdmin() {
+        if(!sessionStorage["myJWT"]) {
+            return false
+        }
+
         let jwtData = sessionStorage["myJWT"].split(".")[1];
         let jwtRoleData = JSON.parse( window.atob(jwtData) ).auth;
 
@@ -65,7 +68,6 @@ class GetProduct extends Component {
                 return true;
             }
         }
-
         return false;
     }
 
