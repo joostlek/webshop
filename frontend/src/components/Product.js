@@ -12,27 +12,22 @@ class Product extends Component {
 
         this.state = {products:null};
 
-        this.displayProducts();
+        this.getProducts();
+
     }
 
-    async displayProducts() {
-        let products;
-        products = await this.getProducts();
-        await this.setState({products:products});
-        console.log(this.state);
-        this.forceUpdate();
-    }
+    async getProducts() {
 
-    getProducts() {
-            var fetchoptions = { method: 'GET'};
-
-            fetch("http://localhost:8082/products/" + this.props.match.params.id, fetchoptions)
-            .then(response => response.json())
-            // .then(products => this.setState({products}))
-            .then(function(myJson) {
-                return myJson;
-            });
-            // }).catch();
+        try {
+            var fetchoptions = {method: 'GET'};
+            const response = await fetch("http://localhost:8082/products/" + this.props.match.params.id, fetchoptions);
+            let responseBody = response.json();
+            await this.setState({products: responseBody});
+            console.log(responseBody);
+            this.forceUpdate();
+        } catch(error) {
+            console.log(error);
+        }
     }
 
 
@@ -54,7 +49,7 @@ class Product extends Component {
     render() {
         let test;
         if (!this.state.product) {
-            test = (<div />);
+            test = (<div>Leeg</div>);
         } else {
             test = (
                     <div className="container-fluid">
