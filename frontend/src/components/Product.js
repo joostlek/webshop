@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import "../App.css";
-import ".//src/components/product.css"
+import "./product.css"
 import "bootstrap/dist/css/bootstrap.css";
-import productimage from "./assets/product.jpg";
+import productimage from "../assets/product.jpg";
 // import "./components/variables.js";
 
 class Product extends Component {
@@ -17,9 +17,10 @@ class Product extends Component {
         var fetchoptions = { method: 'GET'};
 
         fetch("localhost/products/1", fetchoptions)
-            .then(response => response.json());
+            .then(response => response.json())
             .then(function(myJson) {
                 return myJson;
+            });
             // }).catch();
     }
 
@@ -55,7 +56,7 @@ class Product extends Component {
                                     <div className="col-md-6 product-page__container">
                                         <div className="product">
                                             {test}
-                                            <img id="item-display" src={productimage}/>
+                                            <img id="item-display" src={productimage} alt="product"/>
                                         </div>
 
                                         <div className="product-title">{prod.Name}</div>
