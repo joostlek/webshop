@@ -38,8 +38,8 @@ public class Product {
 
     @ManyToMany(mappedBy = "products")
     private Set<Category> categories = new HashSet<>();
-
-    @OneToOne(fetch = FetchType.EAGER, optional = true)
+  
+    @OneToOne(fetch = FetchType.EAGER)
     private Discount discount;
 
     public Product() {

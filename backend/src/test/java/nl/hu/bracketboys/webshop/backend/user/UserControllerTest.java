@@ -54,7 +54,7 @@ class UserControllerTest {
         user.setLastName("Jones");
         user.setEmail("Alex.jones@alex.com");
         user.setActive(true);
-        user.setId(2L);
+        user1.setId(2L);
         user1.setFirstName("Jane");
         user1.setLastName("Joness");
         user1.setEmail("Jane.jones@alex.com");

@@ -45,7 +45,7 @@ class ProductServiceTest {
         product.setTitle("product 1");
         product.setDescription("Generiek product #1.");
         product.setPrice(25.0);
-        product.setId(2L);
+        product1.setId(2L);
         product1.setTitle("product 2");
         product1.setDescription("Generiek product #2.");
         product1.setPrice(5.0);
@@ -83,6 +83,8 @@ class ProductServiceTest {
 
         verify(productRepository, atLeastOnce()).deleteById(any(Long.class));
     }
+
+
 
     @Test
     void save() {

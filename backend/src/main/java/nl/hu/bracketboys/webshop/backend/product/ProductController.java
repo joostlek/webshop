@@ -4,6 +4,7 @@ import nl.hu.bracketboys.webshop.backend.product.dto.ProductDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.BasePathAwareController;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,6 +32,7 @@ public class ProductController {
     }
 
     @PostMapping("/products")
+    @ResponseStatus(HttpStatus.CREATED)
     public ProductDTO addProduct(@RequestBody ProductDTO productDTO) {
         Product product = convertToEntity(productDTO);
         return convertToDTO(productService.save(product));
