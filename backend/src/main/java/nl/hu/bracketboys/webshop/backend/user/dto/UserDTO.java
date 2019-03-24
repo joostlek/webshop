@@ -11,8 +11,6 @@ public class UserDTO {
 
     private String email;
 
-    private String password;
-
     private Date created;
 
     private Date updated;
@@ -49,14 +47,6 @@ public class UserDTO {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Date getCreated() {
