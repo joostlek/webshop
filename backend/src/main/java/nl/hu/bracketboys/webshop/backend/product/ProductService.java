@@ -1,5 +1,6 @@
 package nl.hu.bracketboys.webshop.backend.product;
 
+import nl.hu.bracketboys.webshop.backend.category.CategoryServiceInterface;
 import nl.hu.bracketboys.webshop.backend.product.exceptions.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,9 +11,12 @@ import java.util.List;
 public class ProductService implements ProductServiceInterface {
     private final ProductRepository productRepository;
 
+    private final CategoryServiceInterface categoryService;
+
     @Autowired
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, CategoryServiceInterface categoryService) {
         this.productRepository = productRepository;
+        this.categoryService = categoryService;
     }
 
     @Override
@@ -38,11 +42,19 @@ public class ProductService implements ProductServiceInterface {
 
     @Override
     public Product save(Product product) {
-        return productRepository.save(product);
+        product.addCategory(categoryService.getCategory(1L));
+        return this.saveProduct(product);
     }
 
     @Override
     public List<Product> getAllProductsByCategoryId(Long categoryId) {
         return productRepository.getAllByCategoryId(categoryId);
+    }
+
+    private Product saveProduct(Product product) {
+        if (product.getPrice() < 0) {
+            throw new RuntimeException("Price is below zero");
+        }
+        return this.productRepository.save(product);
     }
 }
