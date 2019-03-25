@@ -54,12 +54,12 @@ export class Afrekenen extends Component {
         })
         .then(response => {
           alert(response.title + "is besteld");
+          window.replace("http://localhost:8080/order/" + response.id);
         })
         .catch(function(error) {
           console.log(error);
         });
 
-      window.replace("http://localhost:8082/order/" + response.id);
     } else {
       alert("U moet eerst akkoord gaan voordat u de bestelling kunt afronden");
     }
