@@ -40,10 +40,17 @@ class GetProduct extends Component {
     saveProductToSession()  {
         let cart = sessionStorage["cart"] ? JSON.parse(sessionStorage["cart"]) : [];
 
+        let currentPrice;
+        if (this.state.data.discount) {
+            currentPrice = this.state.data.discount.discount;
+        } else {
+            currentPrice = this.state.data.price;
+        }
+
         let product = {
             id: this.state.data.id,
             name: this.state.data.title,
-            price: this.state.data.price,
+            price: currentPrice,
             amount: this.state.amount
         };
 
