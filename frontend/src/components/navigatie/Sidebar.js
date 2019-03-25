@@ -1,32 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
-const test = [
-  {
-    id: 1,
-    naam: "Fruit"
-  },
-  {
-    id: 2,
-    naam: "Groente"
-  },
-  {
-    id: 3,
-    naam: "Zuivel"
-  },
-  {
-    id: 4,
-    naam: "Frisdrank"
-  },
-  {
-    id: 5,
-    naam: "Vlees"
-  },
-  {
-    id: 6,
-    naam: "Snack"
-  }
-];
 
 export class Sidebar extends Component {
   constructor(props) {
@@ -42,9 +16,9 @@ export class Sidebar extends Component {
       .then(response => {
         return response.json();
       })
-      .then(response => {
-        this.setState({ categories: response });
-      });
+      .then( (response) => {
+        this.setState({categories: response});
+      })
   }
 
   render() {
@@ -52,9 +26,9 @@ export class Sidebar extends Component {
       <div>
         <ul>
           <li className="list-group-item active">Categoriën</li>
-          {test.map(({ id, naam }) => (
-            <li className="list-group-item" key={id}>
-              <NavLink to={"/categorie/" + id}>{naam}</NavLink>
+          {this.state.categories.map(category => (
+            <li className="list-group-item" key={category.id}>
+              <NavLink to={"/categorie/" + category.id}>{category.name}</NavLink>
             </li>
           ))}
         </ul>
