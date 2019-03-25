@@ -55,7 +55,7 @@ public class ProductController {
     private ProductDTO convertToDTO(Product product) {
         ProductDTO productDTO = modelMapper.map(product, ProductDTO.class);
         if (productDTO.getDiscount() != null) {
-            if (!(productDTO.getDiscount().getBeginDate().after(new Date()) && productDTO.getDiscount().getEndDate().before(new Date()))) {
+            if (!(productDTO.getDiscount().getBeginDate().before(new Date()) && productDTO.getDiscount().getEndDate().after(new Date()))) {
                 productDTO.setDiscount(null);
             }
         }
