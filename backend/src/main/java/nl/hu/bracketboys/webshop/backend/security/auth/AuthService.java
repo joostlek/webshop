@@ -2,6 +2,7 @@ package nl.hu.bracketboys.webshop.backend.security.auth;
 
 import nl.hu.bracketboys.webshop.backend.security.CustomException;
 import nl.hu.bracketboys.webshop.backend.security.JwtTokenProvider;
+import nl.hu.bracketboys.webshop.backend.user.User;
 import nl.hu.bracketboys.webshop.backend.user.service.UserServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,7 +31,8 @@ public class AuthService implements AuthServiceInterface {
     public String signin(String username, String password) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-            return jwtTokenProvider.createToken(username, userService.getUserByEmail(username).getGrantedAuthorities());
+            User user = userService.getUserByEmail(username);
+            return jwtTokenProvider.createToken(username, user.getId(), user.getGrantedAuthorities());
         } catch (AuthenticationException e) {
             throw new CustomException("Invalid username/password supplied", HttpStatus.UNPROCESSABLE_ENTITY);
         }

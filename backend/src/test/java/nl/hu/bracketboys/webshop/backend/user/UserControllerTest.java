@@ -101,7 +101,6 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.firstName", is(user.getFirstName())))
                 .andExpect(jsonPath("$.lastName", is(user.getLastName())))
                 .andExpect(jsonPath("$.email", is(user.getEmail())))
-                .andExpect(jsonPath("$.password", is(user.getPassword())))
                 .andExpect(jsonPath("$.created", is(user.getCreated())))
                 .andExpect(jsonPath("$.updated", is(user.getUpdated())))
                 .andExpect(jsonPath("$.active", is(user.isActive())));

@@ -4,6 +4,7 @@ import nl.hu.bracketboys.webshop.backend.discount.Discount;
 import nl.hu.bracketboys.webshop.backend.discount.exceptions.DiscountNotFoundException;
 import nl.hu.bracketboys.webshop.backend.discount.repository.DiscountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,11 +30,13 @@ public class DiscountService implements DiscountServiceInterface {
     }
 
     @Override
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void delete(Long id) {
         discountRepository.deleteById(id);
     }
 
     @Override
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Discount save(Discount discount) {
         return discountRepository.save(discount);
     }

@@ -4,6 +4,7 @@ import nl.hu.bracketboys.webshop.backend.category.Category;
 import nl.hu.bracketboys.webshop.backend.category.exceptions.CategoryNotFoundException;
 import nl.hu.bracketboys.webshop.backend.category.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,11 +31,13 @@ public class CategoryService implements CategoryServiceInterface {
     }
 
     @Override
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Category saveCategory(Category category) {
         return categoryRepository.save(category);
     }
 
     @Override
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Category updateCategory(Category newCategory) {
         return categoryRepository.findById(newCategory.getId())
                 .map(category -> {
@@ -45,6 +48,7 @@ public class CategoryService implements CategoryServiceInterface {
     }
 
     @Override
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void deleteCategory(Long categoryId) {
         categoryRepository.deleteById(categoryId);
     }

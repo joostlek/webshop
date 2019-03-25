@@ -5,6 +5,7 @@ import nl.hu.bracketboys.webshop.backend.product.Product;
 import nl.hu.bracketboys.webshop.backend.product.exceptions.ProductNotFoundException;
 import nl.hu.bracketboys.webshop.backend.product.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,11 +39,13 @@ public class ProductService implements ProductServiceInterface {
     }
 
     @Override
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void delete(Long id) {
         productRepository.deleteById(id);
     }
 
     @Override
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Product save(Product product) {
         product.addCategory(categoryService.getCategory(1L));
         return this.saveProduct(product);
@@ -54,6 +57,7 @@ public class ProductService implements ProductServiceInterface {
     }
 
     @Override
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Product updateProduct(Product product) {
         Product newProduct = this.getProductById(product.getId());
         newProduct.setDescription(product.getDescription());

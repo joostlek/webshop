@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import "./assets/css/App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import PrivateRoute from "react-private-route";
 
 import GetProduct from "./components/product/GetProduct";
 import Navbar from "./components/navigatie/Navbar";
@@ -21,6 +22,22 @@ class App extends Component {
     if(!sessionStorage["cart"]){
       sessionStorage["cart"] = "[]";
     }
+  }
+
+  isAdmin() {
+    if(!sessionStorage["myJWT"]) {
+      return false
+    }
+
+    let jwtData = sessionStorage["myJWT"].split(".")[1];
+    let jwtRoleData = JSON.parse( window.atob(jwtData) ).auth;
+
+    for (let i=0; i<jwtRoleData.length; i++) {
+      if (jwtRoleData[i].authority === "ROLE_ADMIN") {
+        return true;
+      }
+    }
+    return false;
   }
 
   render() {
@@ -44,8 +61,8 @@ class App extends Component {
                 <Route path="/cart" component={Cart} />
                 <Route path="/categorie/:id" co mponent={Categorie} />
                 <Route path="/login" component={Authentication}/>
-                <Route path="/addproduct" component={AddProduct} />
-                <Route path="/updateproduct/:id" component={UpdateProduct} />
+                <PrivateRoute path="/addproduct" component={AddProduct} isAuthenticated={this.isAdmin()} />
+                <PrivateRoute path="/updateproduct/:id" component={UpdateProduct} isAuthenticated={this.isAdmin()} />
                 <Route path="/afrekenen" component={Afrekenen} />
               </Switch>
             </div>
