@@ -1,9 +1,7 @@
 package nl.hu.bracketboys.webshop.backend.product;
 
 import nl.hu.bracketboys.webshop.backend.category.Category;
-
 import nl.hu.bracketboys.webshop.backend.discount.Discount;
-
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -41,9 +39,6 @@ public class Product {
 
     @OneToOne(fetch = FetchType.EAGER, optional = true)
     private Discount discount;
-
-    public Product() {
-    }
 
     protected void setId(Long id) {
         this.id = id;

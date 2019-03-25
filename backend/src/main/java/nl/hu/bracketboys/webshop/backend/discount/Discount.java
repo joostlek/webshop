@@ -33,9 +33,6 @@ public class Discount {
     @OneToOne(fetch = FetchType.EAGER, optional = false)
     private Product product;
 
-    public Discount() {
-    }
-
     public Long getId() {
         return id;
     }

@@ -29,9 +29,6 @@ public class Order {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private User user;
 
-    protected Order() {
-    }
-
     public Long getId() {
         return id;
     }

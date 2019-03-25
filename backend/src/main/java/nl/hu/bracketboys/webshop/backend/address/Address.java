@@ -36,9 +36,6 @@ public class Address {
     @OneToMany(mappedBy = "address")
     private Set<Order> orders = new HashSet<>();
 
-    public Address() {
-    }
-
     public Long getId() {
         return id;
     }

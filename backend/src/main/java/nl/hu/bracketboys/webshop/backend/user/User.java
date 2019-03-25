@@ -4,7 +4,6 @@ import nl.hu.bracketboys.webshop.backend.address.Address;
 import nl.hu.bracketboys.webshop.backend.order.Order;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.hibernate.secure.spi.GrantedPermission;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -49,9 +48,6 @@ public class User {
 
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
-
-    public User() {
-    }
 
     protected void setId(Long id) {
         this.id = id;
