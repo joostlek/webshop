@@ -1,35 +1,98 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
+import CartLine from "../cart/CartLine";
+import { NavLink } from "react-router-dom";
 
 export class Afrekenen extends Component {
-    render() {
-        // console.log(JSON.parse(sessionStorage["cart"]));
-        return (
-            <div className="container">
-                <h3>Persoonsgegevens</h3>
-                <label className="row">Achternaam</label>
-                <input placeholder="Achternaam" />
-                <label className="row">Voornaam</label>
-                <input placeholder="Voornaam" />
+  constructor(props) {
+    super(props);
 
-                <div className="dropdown-divider" />
+    this.state = {
+      checkbox: false
+    };
+  }
 
-                <h3>Adresgegevens</h3>
-                <label className="row">Straatnaam</label>
-                <input placeholder="Straatnaam" />
-                <label className="row">Huisnummer</label>
-                <input placeholder="12A" />
-                <label className="row">Postcode</label>
-                <input placeholder="1234AB" />
-                <label className="row">Land</label>
-                <input placeholder="Nederland" />
+  getCart() {
+    return JSON.parse(sessionStorage["cart"]);
+  }
 
-                <div className="dropdown-divider" />
+  handleCheckbox = event => {
+    this.setState({
+      checkbox: event.target.value
+    });
+  };
 
-                <h3>Winkelwagen</h3>
-            </div>
-        );
+  rekenAf = () => {
+    if (this.state.checkbox) {
+      this.checkboxConfirmed();
     }
+  };
+
+  checkboxConfirmed() {
+    console.log("test");
+    window.replace("localhost:8080/order/{orderId}");
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <h4>Persoonsgegevens</h4>
+        <label className="row">Achternaam</label>
+        <input placeholder="Achternaam" />
+        <label className="row">Voornaam</label>
+        <input placeholder="Voornaam" />
+
+        <div className="dropdown-divider" />
+
+        <h4>Adresgegevens</h4>
+        <label className="row">Straatnaam</label>
+        <input placeholder="Straatnaam" />
+        <label className="row">Huisnummer</label>
+        <input placeholder="12A" />
+        <label className="row">Postcode</label>
+        <input placeholder="1234AB" />
+        <label className="row">Land</label>
+        <input placeholder="Nederland" />
+
+        <div className="dropdown-divider" />
+
+        <h4>Winkelwagen</h4>
+        <div>
+          {this.getCart().map(item => (
+            <CartLine
+              key={item.id}
+              id={item.id}
+              name={item.name}
+              amount={item.amount}
+              price={item.price}
+              deleteHandler={this.deleteHandler}
+            />
+          ))}
+        </div>
+
+        <div className="dropdown-divider" />
+        <br />
+        <div>
+          <label>Akkoord </label>
+          <br />
+          <input
+            type="checkbox"
+            value={this.state.checkbox}
+            onClick={this.handleCheckbox}
+          />
+        </div>
+        <br />
+        <div>
+          <button
+            className="btn btn-success"
+            onClick={() => this.checkboxConfirmed}
+          >
+            Bestelling afronden
+          </button>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Afrekenen;
