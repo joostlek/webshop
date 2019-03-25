@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import CartLine from "../cart/CartLine";
-import { NavLink } from "react-router-dom";
 
 export class Afrekenen extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      checkbox: false
+      checked: false
     };
   }
 
@@ -16,22 +15,55 @@ export class Afrekenen extends Component {
     return JSON.parse(sessionStorage["cart"]);
   }
 
-  handleCheckbox = event => {
+  handleCheckbox = () => {
     this.setState({
-      checkbox: event.target.value
+      checked: !this.state.checked
     });
   };
 
+  cartIntoJson() {
+    let products = [];
+    for (let i = 0; i < this.getCart().length; i++) {
+      products.push({
+        productId: this.getCart()[i].id,
+        amount: this.getCart()[i].amount
+      });
+    }
+    return products;
+  }
+
   rekenAf = () => {
-    if (this.state.checkbox) {
-      this.checkboxConfirmed();
+    if (this.state.checked) {
+      let fetchoptions = {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          orderItems: this.cartIntoJson(),
+          addressId: 1,
+          userId: 1
+        })
+      };
+
+      fetch("http://localhost:8082/orders", fetchoptions)
+        .then(function(response) {
+          if (response.ok) return response.json();
+          else throw "Er is iets fout gegaan met afronden van uw order.";
+        })
+        .then(response => {
+          alert(response.title + "is besteld");
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+
+      window.replace("http://localhost:8082/order/" + response.id);
+    } else {
+      alert("U moet eerst akkoord gaan voordat u de bestelling kunt afronden");
     }
   };
-
-  checkboxConfirmed() {
-    console.log("test");
-    window.replace("localhost:8080/order/{orderId}");
-  }
 
   render() {
     return (
@@ -78,15 +110,12 @@ export class Afrekenen extends Component {
           <input
             type="checkbox"
             value={this.state.checkbox}
-            onClick={this.handleCheckbox}
+            onChange={this.handleCheckbox}
           />
         </div>
         <br />
         <div>
-          <button
-            className="btn btn-success"
-            onClick={() => this.checkboxConfirmed}
-          >
+          <button className="btn btn-success" onClick={this.rekenAf}>
             Bestelling afronden
           </button>
         </div>
