@@ -12,17 +12,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.crypto.SecretKey;
-import javax.management.relation.Role;
 import javax.servlet.http.HttpServletRequest;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Collection;
+import java.util.Date;
 
 @Component
 public class JwtTokenProvider {
@@ -41,10 +39,11 @@ public class JwtTokenProvider {
         secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS512);
     }
 
-    public String createToken(String username, Collection<? extends GrantedAuthority> grantedAuthorities) {
+    public String createToken(String username, Long userId, Collection<? extends GrantedAuthority> grantedAuthorities) {
 
         Claims claims = Jwts.claims().setSubject(username);
         claims.put("auth", grantedAuthorities);
+        claims.put("userId", userId);
 
         Date now = new Date();
         Date validity = new Date(now.getTime() + validityInMilliseconds);
