@@ -1,7 +1,10 @@
 package nl.hu.bracketboys.webshop.backend.order.service;
 
 import nl.hu.bracketboys.webshop.backend.address.service.AddressServiceInterface;
-import nl.hu.bracketboys.webshop.backend.order.*;
+import nl.hu.bracketboys.webshop.backend.order.Order;
+import nl.hu.bracketboys.webshop.backend.order.OrderBuilder;
+import nl.hu.bracketboys.webshop.backend.order.OrderItem;
+import nl.hu.bracketboys.webshop.backend.order.OrderStatus;
 import nl.hu.bracketboys.webshop.backend.order.dto.NewOrderDTO;
 import nl.hu.bracketboys.webshop.backend.order.dto.NewOrderItemDTO;
 import nl.hu.bracketboys.webshop.backend.order.repository.OrderItemRepository;
@@ -56,5 +59,13 @@ public class OrderService implements OrderServiceInterface {
             orderItemRepository.save(orderItem);
         }
         return orderRepository.save(newOrder);
+    }
+
+    @Override
+    public Order updateOrderStatus(Long orderId) {
+        Order order = this.orderRepository.findById(orderId)
+                .orElseThrow(RuntimeException::new);
+        order.setOrderStatus(OrderStatus.DELIVERED);
+        return orderRepository.save(order);
     }
 }

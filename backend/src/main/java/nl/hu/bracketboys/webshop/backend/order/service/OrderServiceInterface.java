@@ -9,4 +9,6 @@ public interface OrderServiceInterface {
     List<Order> getOrdersByUserId(Long userId);
 
     Order saveOrder(NewOrderDTO order);
+
+    Order updateOrderStatus(Long orderId);
 }
