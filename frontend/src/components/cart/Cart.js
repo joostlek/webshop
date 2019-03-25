@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import CartLine from "./CartLine";
+import { NavLink } from "react-router-dom";
 
 class Cart extends Component {
   constructor(props) {
@@ -9,16 +10,13 @@ class Cart extends Component {
     this.deleteHandler = this.deleteHandler.bind(this);
   }
 
-
   getCart() {
     return JSON.parse(sessionStorage["cart"]);
   }
 
-
   deleteHandler() {
     this.forceUpdate();
   }
-
 
   render() {
     return (
@@ -35,7 +33,11 @@ class Cart extends Component {
             />
           ))}
         </div>
-        <button className="btn btn-primary">Bestelling afronden</button>
+        <button className="btn btn-primary">
+          <NavLink to="/afrekenen" style={{ color: "white" }}>
+            Bestelling afronden
+          </NavLink>
+        </button>
       </div>
     );
   }
