@@ -20,6 +20,8 @@ class DeleteProduct extends Component {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
+                'Authorization': 'Bearer '+ sessionStorage["myJWT"],
+
             },
             body: JSON.stringify({
                 id: this.state.id
