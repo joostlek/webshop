@@ -6,21 +6,6 @@ import test from "../../assets/img/test.svg";
 import { NavLink } from 'react-router-dom';
 
 class Dashboard extends Component {
-  //Testdata
-  prod = [
-    {
-      ProductId: "5",
-      Name: "Komkommer",
-      Category: "Groente",
-      Price: 1
-    },
-    {
-      ProductId: "6",
-      Name: "Chips",
-      Category: "Snack",
-      Price: 1.5
-    }
-  ];
 
   constructor(props) {
     super(props);
@@ -69,12 +54,14 @@ class Dashboard extends Component {
               <div className="card" style={{ width: 18 + "rem" }}>
                 <img className="card-img-top" src={test} alt="Placeholder" />
                 <div className="card-body">
-                  <h5 className="card-title">{prod.title}</h5>
+                  <h1 className="card-title">{prod.title}</h1>
+                    <div className="price-was">Van €{prod.price}</div>
+                    <div className="price-now"><span>Nu voor €{prod.discount.discount}</span></div>
                   <p className="card-text">{prod.description}</p>
                   <NavLink to={"/product/"+prod.id}>Bekijk Product</NavLink>
                 </div>
+                </div>
               </div>
-            </div>
           ))}
         </div>
       </div>
