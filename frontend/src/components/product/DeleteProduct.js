@@ -30,7 +30,7 @@ class DeleteProduct extends Component {
 
         fetch("http://localhost:8082/products/" + this.props.id, fetchoptions)
             .then(function(response) {
-                if (response.ok) alert("GetProduct deleted");
+                if (response.ok) alert("Product verwijderd");
             })
             .catch(function(error) {
                 console.log(error);
