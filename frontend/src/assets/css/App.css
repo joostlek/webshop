@@ -36,3 +36,18 @@
   margin: 5px;
   width: 50px;
 }
+
+.price-was {
+  color:#999;
+  text-decoration: line-through;
+}
+
+.price-now span {
+  font-size:24px;
+  color:#ff5406;
+}
+
+.card-body {
+  text-align: center;
+}
+

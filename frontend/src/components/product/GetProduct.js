@@ -33,9 +33,6 @@ class GetProduct extends Component {
                 return response.json();
             })
             .then( (response) => {
-                if (response.discount) {
-                    response.price = response.discount.discount;
-                }
                 this.setState({data: response});
             })
     }
@@ -88,44 +85,60 @@ class GetProduct extends Component {
             );
         }
 
+        let priceComponent;
+
+        if (this.state.data.discount) {
+            priceComponent = (
+                <div className="product-price">
+                    <div className="price-was">Van {this.state.data.price}</div>
+                    <div className="price-now">€{this.state.data.discount.discount}</div>
+                </div>
+            );
+        } else {
+            priceComponent = (
+                <div className="product-price">
+                    €{this.state.data.price}
+                </div>
+            );
+        }
+
         if (!this.state.data) {
             test = (<div />);
         } else {
             test = (
 
-                    <div className="container-fluid">
-                        <div className="content-wrapper">
-                            <div className="item-container">
-                                <div className="container">
-                                    <div className="col-md-6 product-page__container">
-                                        <div className="product">
-                                            <img id="item-display" src={productimage} alt="product"/>
-                                        </div>
-
-                                        <div id="title" ref="title"><h2>{this.state.data.title}</h2></div>
-                                        <div className="product-desc">{this.state.data.description}</div>
-                                        <div className="col-md-3"> </div>
-                                        <div className="product-price">€ {this.state.data.price}</div>
-                                        <p>aantal</p>
-                                        <input className="product-amount" type="number" value={this.state.amount} onChange={this.handleChange} /><br />
-                                        <div className="btn-group cart">
-                                            <button type="button" className="btn btn-success btn-cart" onClick={()=>this.saveProductToSession()} >
-                                                Voeg toe aan winkelwagen
-                                            </button>
-                                        </div>
-                                        <div className="btn-group wishlist">
-                                            <button type="button" className="btn btn-danger">
-                                                Terug naar de categorie
-                                            </button>
-                                        </div>
-                                        <div className="btn-group delete">
-                                            {deleteButton}
-                                        </div>
+                <div className="container-fluid">
+                    <div className="content-wrapper">
+                        <div className="item-container">
+                            <div className="container">
+                                <div className="col-md-6 product-page__container">
+                                    <div className="product">
+                                        <img id="item-display" src={productimage} alt="product"/>
+                                    </div>
+                                    <div id="title" ref="title"><h2>{this.state.data.title}</h2></div>
+                                    <div className="product-desc">{this.state.data.description}</div>
+                                    <div className="col-md-3"> </div>
+                                    {priceComponent}
+                                    <p>aantal</p>
+                                    <input className="product-amount" type="number" value={this.state.amount} onChange={this.handleChange} /><br />
+                                    <div className="btn-group cart">
+                                        <button type="button" className="btn btn-success btn-cart" onClick={()=>this.saveProductToSession()} >
+                                            Voeg toe aan winkelwagen
+                                        </button>
+                                    </div>
+                                    <div className="btn-group wishlist">
+                                        <button type="button" className="btn btn-danger">
+                                            Terug naar de categorie
+                                        </button>
+                                    </div>
+                                    <div className="btn-group delete">
+                                        {deleteButton}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
             );
         }
 
