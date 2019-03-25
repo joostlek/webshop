@@ -86,6 +86,7 @@ class GetProduct extends Component {
         }
 
         let priceComponent;
+        let timeComponent;
 
         if (this.state.data.discount) {
             priceComponent = (
@@ -94,12 +95,20 @@ class GetProduct extends Component {
                     <div className="price-now">€{this.state.data.discount.discount}</div>
                 </div>
             );
+            timeComponent = (
+                <div className="product-price">
+                    <label>Deze aanbieding loopt van</label>
+                    <div className="">{this.state.data.discount.begin_date} tot</div>
+                    <div className="">{this.state.data.discount.end_date}</div>
+                </div>
+            );
         } else {
             priceComponent = (
                 <div className="product-price">
                     €{this.state.data.price}
                 </div>
             );
+            timeComponent = null;
         }
 
         if (!this.state.data) {
@@ -119,6 +128,7 @@ class GetProduct extends Component {
                                     <div className="product-desc">{this.state.data.description}</div>
                                     <div className="col-md-3"> </div>
                                     {priceComponent}
+                                    {timeComponent}
                                     <p>aantal</p>
                                     <input className="product-amount" type="number" value={this.state.amount} onChange={this.handleChange} /><br />
                                     <div className="btn-group cart">
