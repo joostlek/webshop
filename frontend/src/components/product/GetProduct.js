@@ -95,6 +95,7 @@ class GetProduct extends Component {
         let priceComponent;
         let timeComponent;
 
+
         if (this.state.data.discount) {
             priceComponent = (
                 <div className="product-price">
@@ -102,11 +103,13 @@ class GetProduct extends Component {
                     <div className="price-now">€{this.state.data.discount.discount}</div>
                 </div>
             );
+            let beginTime = new Date(this.state.data.discount.beginDate).toLocaleDateString("nl-NL");
+            let endTime = new Date(this.state.data.discount.endDate).toLocaleDateString("nl-NL");
             timeComponent = (
                 <div className="product-price">
                     <label>Deze aanbieding loopt van</label>
-                    <div className="">{this.state.data.discount.begin_date} tot</div>
-                    <div className="">{this.state.data.discount.end_date}</div>
+                    <div className="">{beginTime} tot</div>
+                    <div className="">{endTime}</div>
                 </div>
             );
         } else {
