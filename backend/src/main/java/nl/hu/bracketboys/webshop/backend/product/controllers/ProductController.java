@@ -1,13 +1,14 @@
 package nl.hu.bracketboys.webshop.backend.product.controllers;
 
 import nl.hu.bracketboys.webshop.backend.product.Product;
-import nl.hu.bracketboys.webshop.backend.product.service.ProductServiceInterface;
 import nl.hu.bracketboys.webshop.backend.product.dto.ProductDTO;
+import nl.hu.bracketboys.webshop.backend.product.service.ProductServiceInterface;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.BasePathAwareController;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,7 +53,13 @@ public class ProductController {
     }
 
     private ProductDTO convertToDTO(Product product) {
-        return modelMapper.map(product, ProductDTO.class);
+        ProductDTO productDTO = modelMapper.map(product, ProductDTO.class);
+        if (productDTO.getDiscount() != null) {
+            if (!(productDTO.getDiscount().getBeginDate().after(new Date()) && productDTO.getDiscount().getEndDate().before(new Date()))) {
+                productDTO.setDiscount(null);
+            }
+        }
+        return productDTO;
     }
 
     private Product convertToEntity(ProductDTO productDTO) {
